@@ -1,0 +1,60 @@
+Médiation;Scrum Master;Le Scrum Master a évité la fin du monde avec ses techniques de médiation;Le Scrum Master est un facilitateur;+ 3 pts
+Production;Equipe de dev;La météo émotionnelle est à 5 pour toute l'équipe, ils ont été productifs;Le bien-être de l'équipe est fondamental;+ 1pt pendant 2 tours
+Absence;Scrum Master;Le Scrum Master n'a pas su corriger l'organisation interne à l'équipe;Une équipe mal organisée a besoin d'un Scrum Master efficace;- 1 pt
+Efficacité;Equipe de dev;Le daily stand-up a duré 12 minutes ! ;Un daily stand-up doit être efficace et ne pas dépasser 15 minutes;+ 1 pt
+Validé;Product Owner;Le Product Owner a validé une tâche du sprint backlog;Seul le Product Owner peut valider une tâche (finie) du backlog;+ 1 pt
+Petits pains;Scrum Master;Le Scrum Master a offert des petits-pains à toute l'équipe;Le Scrum Master est un leader qui soutient son équipe;+ 2 pts
+Bug;Equipe de dev;Un bug a été découvert sur un ancien incrément;L'équipe de dev doit bien vérifier si l'incrément respecte la définition de fini;- 2 pts
+Amélioration;Equipe de dev;L'équipe de dev a trouvé des voies d'amélioration à la rétro;S'améliorer doit être le maître-mot;+ 2 pts pendant 3 tours
+Qualité;Equipe Scrum;L'équipe a alimenté un product backlog en discutant;Il est plus facile d'alimenter un product backlog si tout le monde y participe;+ 1 pt
+Satisfaction;Equipe Scrum;L'équipe a présenté un incrément aux parties prenantes et celui-ci est statisfait;La revue permet de montrer un incrément au client;+ 1 pt
+Mauvais rythme;Equipe de dev;En retard sur le sprint backlog, l'équipe a travaillé 12h pendant plusieurs jours;Le rythme de travail doit être soutenable;- 2 pts pendant 2 tours
+A bas le roi;Product Owner;Le Product Owner se prend pour le chef et donne des ordres à l'équipe de dev;Il n'y a pas de chef, tout le monde est au même niveau hiérarchique;- 2 pts
+Ailleurs;Equipe de dev;Un membre de l'équipe n'est pas à fond sur son travail;L'engagement est une des grandes valeurs de scrum;- 1 pt
+Courage;Product Owner;Le Product Owner a osé refuser de changer l'ordre du product backlog à la demande d'une partie prenante;Le courage est important en scrum;+ 3 pts
+100%;Equipe de dev;L'équipe n'a pas respecté toutes les règles scrum;Pour être scrum, il faut appliquer toutes ses règles;- 1 pt
+Prolongations;Equipe de dev;L'incrément n'étant pas fini, l'équipe souhaite prolonger le sprint;On ne peut pas prolonger un sprint;- 1 pt
+Focus;Equipe de dev;Un membre de l'équipe veut faire plusieurs tâches en même temps;Il faut rester focus sur la tâche en cours;- 2 pts
+Peace and Love;Equipe de dev;Deux membres de l'équipe n'étant pas d'accord se sont expliqués calmement;Le respect et la communication sont importants;+ 1 pt
+Transparence;Equipe de dev;Un membre de l'équipe refuse d'expliquer son travail;La transparence est d'une importance capitale;- 1pt
+Definition of done;Equipe de dev;L'équipe a défini ensemble les critères pour qu'une storie soit finie;C'est l'équipe qui crée la définition de fini;+ 3 pts
+Diversité;Equipe de dev;L'équipe est uniquement composée de techniciens réseaux;L'équipe de dev doit être pluridisciplinaire;- 2 pts
+Présence utile;Equipe de dev;L'équipe a convaincu un de ses membres à renoncer au télétravail;Travailler dans la même pièce est synonyme de qualité;+ 1 pt
+Livraison fonctionnelle;Equipe Scrum;L'incrément livré n'est pas exploitable à lui seul;Livrer un incrément fonctionnel est essentiel;- 2 pts
+Discussion;Equipe de dev;L'équipe de dev a discuté d'un potentiel problème et l'a résolu;L'intéraction de vive voix est préférable;+ 2 pts
+Collaboration;Product Owner;Le Product Owner a longement discuté avec les parties prenantes pour comprendre leurs attentes;La collaboration remplace la négociation;+ 1 pt
+Pour tout le monde;Product Owner;Le Product Owner a expliqué le product backlog et l'a rendu transparent pour l'équipe;Tout le monde doit y avoir accès pour y proposer ses idées;+ 1 pt
+Goal;Equipe Scrum;L'équipe a défini ensemble le goal et chacun s'est engagé à l'atteindre;Le goal doit être l'objectif de toute l'équipe;+ 3 pts
+Formation;Scrum Master;Le Scrum Master a formé à Scrum un nouveau membre de l'équipe;Le Scrum Master doit être un expert Scrum;+ 1 pt
+Auto-gestion;Equipe de dev;L'équipe de dev s'est attribué des tâches au daily stand-up;Une équipe de dev doit être auto-gérée;+ 2 pts
+La confiance règne;Equipe de dev;A cause d'un problème, l'équipe de dev a tenu pour responsable un des membres de l'équipe;Les responsabilités sont partagées afin de préserver la confiance;- 3 pts
+Tous ensemble;Product Owner;Le Product Owner a affiné le product backlog avec l'aide de l'équipe;Impliquer toute l'équipe dans le product backlog est nécessaire afin de recueillir plus d'idées;+ 2 pts
+Obstacle;Scrum Master;Le Scrum Master a repéré un obstacle et en fait part à l'équipe;Le Scrum Master protège son équipe et la rend efficace;+ 2 pts
+Revue incomplète;Product Owner;Le Product Owner n'a pas invité de parties prenantes à la revue;La revue doit être faite avec l'équipe Scrum et les parties prenantes;- 3 pts
+Faible Incrément;Product Owner;Le Product Owner n'a pas expliqué le product backlog à l'équipe;Le Product Owner doit s'assurer que l'équipe a bien compris le product backlog;- 1 pt pendant 2 tous
+Tous en Scrum !;Scrum Master;Le Scrum Master a expliqué le principe de Scrum aux parties prenantes;Il est important que les parties prenantes comprennent Scrum;+ 3 pts
+Goal obsolète;Equipe de dev;L'equipe de dev a décidé de changer des items du sprint backlog qui ont rendu le goal obsolète;Il faut rester focus sur le goal, et donc ne pas le changer;- 1 pt
+Rythme productif;Equipe de dev;L'equipe de dev vient de finir son 5ème sprint de 3 semaines !;Garder des sprints de taille fixe crée de la cohérence et un bon rythme de travail;+ 2 pts
+Le changement c'est pas maintenant;Equipe de dev;Cela fait 3 sprints que le jour et l'endroit de la rétro changent;Tenir des réunions au même moment et endroit réduit la complexité;- 1 pt
+Baclage perdant;Equipe de dev;L'équipe de dev a préféré bacler les tâches du sprint backlog pour avoir le temps de le finir;Il vaut mieux fournir un travail de qualité et ne pas finir le sprint backlog;- 3 pts
+Affiner c'est gagner;Equipe Scrum;L'équipe scrum a affiné régulièrement le product backlog;Il faut garder le backlog trié et à jour;+ 2 pts
+Progression suivie;Equipe de dev;L'équipe a réalisé un diagramme de flux cumulatifs pour suivre l'évolution du sprint;Evaluer la progression est toujours une bonne pratique;+ 1 pt
+Travail utile;Equipe Scrum;Le sprint a été arrêté car le goal est devenu obsolète;Arrêter le sprint si le goal est obsolète permet de ne pas faire de travail inutile;+ 1 pt
+Planning collaboratif;Equipe Scrum;Le planning a été fait collaborativement;Le plan de travail du sprint est pertinent;+ 2 pts
+Rien compris;Equipe de dev;Un membre de l'équipe n'a pas compris un item du product backlog et s'est planté au développement;Il faut demander au Product Owner des explications si elles sont nécessaires;- 2 pts pendant 2 tours
+Mur de post-it;Equipe de dev;Lors du daily stand-up, le mur s'est retrouvé couvert de post-it;Il faut utiliser un moyen qui convient à tous pour mieux comprendre certaines complexités;+ 1 pt
+Obstacle identifié;Equipe de dev;Lors du daily stand-up, un obstacle a été identifié;Le daily stand-up permet d'améliorer la communication et de surmonter des obstacles;+ 2 pts
+Incident technique;Equipe de dev;Lors du daily stand-up, le plan du jour a été adapté suite à un incident technique;Le daily stand-up permet de s'adapter et de gagner de la productivité;+ 1 pt
+Présentation collective;Equipe Scrum;Tout le monde a pris part à la revue;Prendre part à la revue est important pour analyser l'incrément produit;+ 2 pts
+Futur;Equipe de dev;L'équipe de dev a discuté du futur du projet pendant la review;Parler du futur du projet crée de la motivation;+ 1 pt pendant 3 tours
+Rétro au complet;Equipe de dev;L'équipe de dev a participé au complet à la rétro;La rétro sert à améliorer la qualité et l'efficacité du travail;+ 4 pts
+Toujours s'améliorer;Equipe de dev;L'équipe de dev a analysé le sprint passé à la rétro;La rétro sert à trouver des axes d'amélioration;+ 3 pts
+Mémoire non fiable;Equipe de dev;Les axes d'amélioration trouvés à la rétro ont été oubliés;Il faut bien penser à noter les axes d'amélioration sur le backlog;- 2 pts
+Longue rétro;Equipe de dev;La rétro a duré 6h;La rétro de peut pas durer plus de 3h : il faut rester focus;- 1 pt
+Engagement sur le goal;Equipe de dev;L'équipe a bien avancé sur son sprint backlog mais l'incrément ne respecte pas le goal;Il faut s'engager sur le goal et non sur un nombre d'items;- 3 pts
+Retours instructifs;Parties prenantes;Les parties prenantes ont inspecté les incréments produit et ont donné des retours;Inspecter les incréments permet de donner des retours et d'améliorer la qualité;+ 1 pt
+Approche incrémentale;Equipe de dev;L'équipe a livré régulièrement des incréments;Adopter une approche incrémentale permet de contrôler les risques et d'optimiser la prédictibilité;+ 2 pts
+Séparation de la force;Equipe de dev;L'équipe de 9 personness'est jugée trop grosse et s'est scindée en 2;Etre 10 au maximum permet de ne pas perdre les bénéfices Scrum;+ 2 pts à la review
+Respectez Scrum;Scrum Master;L'équipe n'a pas respecté Scrum;Le Scrum Master doit être attentif au respect de Scrum;- 1 pt sur les 3 prochains tours
+Les yeux plus gros que le ventre;Equipe Scrum;Le sprint a duré 2 mois;Il faut des sprints de durée raisonnable pour que le goal reste valide;- 2 pts
+Ajuster = productivité;Equipe de dev;L'équipe a ajusté le plan de travail du jour pendant la journée;Adapter le plan de travail permet de garder en productivité;+ 1 pt

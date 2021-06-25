@@ -42,8 +42,9 @@ public class MainPane extends JPanel {
         JToggleButton addPlaceHolderButton = new JToggleButton(addPlaceHolder);
         bar.add(addPlaceHolderButton);
 
-        //Icon drawIcon = IconFontSwing.buildIcon(FontAwesome.)
-        JToggleButton drawCard = new JToggleButton();
+        JComboBox choix = new JComboBox(new Object[] {FontUtil.bigText, FontUtil.mediumText, FontUtil.smallText});
+        bar.add(choix);
+
 
         ButtonGroup group = new ButtonGroup();
         group.add(moveButton);
@@ -74,6 +75,7 @@ public class MainPane extends JPanel {
 
                 cardPane.addMouseListener(addPlaceHolderMouseListener);
                 cardPane.addMouseMotionListener(addPlaceHolderMouseMotionListener);
+                cardPane.tmpFontPlaceHolder = FontUtil.getFont(choix.getActionCommand());
             }
         });
 

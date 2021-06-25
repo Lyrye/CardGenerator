@@ -7,8 +7,8 @@ import java.awt.*;
 public class PlaceHolder {
 
     private Font font = null;
-    private Point upLeftCorner = null;
-    private Point downRightCorner = null;
+    private Point upLeftCorner = new Point(100,100);
+    private Point downRightCorner = new Point(200,200);
     private String text;
     private PlaceHoldersUtil.placeHolderType type;
 
@@ -66,4 +66,5 @@ public class PlaceHolder {
     {
         return this.downRightCorner.x - this.upLeftCorner.x;
     }
+
 }

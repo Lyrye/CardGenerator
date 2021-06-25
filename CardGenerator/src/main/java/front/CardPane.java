@@ -1,6 +1,7 @@
 package front;
 
 import middle.Card;
+import util.FontUtil;
 import util.PlaceHoldersUtil;
 
 import javax.imageio.ImageIO;
@@ -17,7 +18,8 @@ public class CardPane extends JPanel {
     private PlaceHolders placeHolders;
     private Point pointClicked;
     private Point tmpPoint;
-    Point backgroundImagePosition = new Point(0,0);
+    public Font tmpFontPlaceHolder;
+    public Point backgroundImagePosition = new Point(0,0);
 
     public Point getTmpPoint() {
         return tmpPoint;
@@ -99,6 +101,9 @@ public class CardPane extends JPanel {
             drawPlaceHolder(g,placeHolder);
 
         }
+    }
+    public void TEST(){
+        System.out.println("TAILLE :"+placeHolders.getPlaceHolderList().size());
     }
 
     public void drawPlaceHolder(Graphics g, PlaceHolder placeHolder ) {

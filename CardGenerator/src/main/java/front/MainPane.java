@@ -40,6 +40,9 @@ public class MainPane extends JPanel {
         JToggleButton addPlaceHolderButton = new JToggleButton(addPlaceHolder);
         bar.add(addPlaceHolderButton);
 
+        //Icon drawIcon = IconFontSwing.buildIcon(FontAwesome.)
+        JToggleButton drawCard = new JToggleButton();
+
         ButtonGroup group = new ButtonGroup();
         group.add(moveButton);
         group.add(addPlaceHolderButton);

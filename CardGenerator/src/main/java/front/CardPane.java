@@ -168,7 +168,7 @@ public class CardPane extends JPanel {
         }
         //applyZoom((Graphics2D) g);
         drawBackground(g);
-        drawCard(g,card);
+        //drawCard(g,card);
 
         if (pointClicked!=null && tmpPoint != null) {
             int maxX = Math.max(tmpPoint.x, pointClicked.x);
@@ -218,7 +218,7 @@ public class CardPane extends JPanel {
         g.drawImage(backgroundImage, backgroundImagePosition.x, backgroundImagePosition.y,PlaceHoldersUtil.WIDTH,PlaceHoldersUtil.HEIGHT, this);
     }
 
-    private void drawCard(Graphics g, Card card)
+    /*private void drawCard(Graphics g, Card card)
     {
         drawPlaceHolder(g,card.getActionName(),PlaceHoldersType.ACTION);
         drawPlaceHolder(g,card.getActionDescription(),PlaceHoldersType.DESCRIPTION);

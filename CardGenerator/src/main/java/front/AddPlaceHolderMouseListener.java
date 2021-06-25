@@ -1,6 +1,6 @@
 package front;
 
-import middle.Card;
+import util.PlaceHoldersUtil;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

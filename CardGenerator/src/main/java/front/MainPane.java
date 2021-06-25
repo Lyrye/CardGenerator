@@ -1,9 +1,11 @@
 package front;
 
-//import jiconfont.icons.font_awesome.FontAwesome;
-//import jiconfont.swing.IconFontSwing;
+import jiconfont.icons.font_awesome.FontAwesome;
+import jiconfont.swing.IconFontSwing;
 import middle.Card;
 import middle.CardManager;
+import util.FontUtil;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -33,7 +35,7 @@ public class MainPane extends JPanel {
         JToolBar bar = new JToolBar();
         add(bar, BorderLayout.PAGE_START);
 
-        /*Icon moveIcon = IconFontSwing.buildIcon(FontAwesome.ARROWS_ALT, 20, Color.WHITE);
+        Icon moveIcon = IconFontSwing.buildIcon(FontAwesome.ARROWS_ALT, 20, Color.WHITE);
         JToggleButton moveButton = new JToggleButton(moveIcon);
         bar.add(moveButton);
         Icon addPlaceHolder = IconFontSwing.buildIcon(FontAwesome.PLUS, 20, Color.WHITE);
@@ -73,7 +75,8 @@ public class MainPane extends JPanel {
                 cardPane.addMouseListener(addPlaceHolderMouseListener);
                 cardPane.addMouseMotionListener(addPlaceHolderMouseMotionListener);
             }
-        });*/
+        });
+
 
 
     }

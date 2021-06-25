@@ -2,10 +2,12 @@ package front;
 
 import middle.Card;
 import util.FileUtil;
-import java.util.List;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 
 public class CommandPane extends JPanel implements ActionListener {
     private static final String PREVIOUS = "<";

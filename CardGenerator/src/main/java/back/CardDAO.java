@@ -15,7 +15,7 @@ public class CardDAO {
 
     public void load (String path)
     {
-        List<String> cards = CsvUtil.FromCsvToList(path);
+       List<String> cards = CsvUtil.FromCsvToList(path);
         for (String line: cards ){
             cardDTO.addCardFromLine(line);
         }

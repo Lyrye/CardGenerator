@@ -6,11 +6,8 @@ import util.PlaceHoldersUtil;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 import java.io.IOException;
 import java.util.Map;
-
-import static util.PlaceHoldersUtil.*;
 
 public class CardPane extends JPanel {
 
@@ -48,6 +45,14 @@ public class CardPane extends JPanel {
         }
         setPreferredSize(new Dimension(PlaceHoldersUtil.WIDTH, PlaceHoldersUtil.HEIGHT));
         placeHolders = new PlaceHolders();
+        placeHolders.addPlaceHolder(new PlaceHolder(FontUtil.bigFont,new Point(960/9,340/9),new Point(1067,159),"ACTION",PlaceHoldersUtil.placeHolderType.ACTION_NAME));
+        placeHolders.addPlaceHolder(new PlaceHolder(FontUtil.mediumFont,new Point(480/9,2120/9),new Point(480/9+6945/9,2120/9+2380/9),"DESCRIPTION",PlaceHoldersUtil.placeHolderType.DESCRIPTION));
+        placeHolders.addPlaceHolder(new PlaceHolder(FontUtil.mediumFont,new Point(7650/9,2120/9),new Point(7650/9+2420/9,2120/9+2380/9),"IMPACT IN GAME",PlaceHoldersUtil.placeHolderType.IMPACT_IN_GAME));
+        placeHolders.addPlaceHolder(new PlaceHolder(FontUtil.mediumFont,new Point(350/9,5240/9),new Point(350/9+10040/9,5240/9+1450/9),"TO REMEMBER",PlaceHoldersUtil.placeHolderType.TO_REMEMBRE));
+    }
+
+    public void addNewPlaceHolder(PlaceHolder placeHolder){
+        placeHolders.addPlaceHolder(placeHolder);
     }
 
    @Override
@@ -60,7 +65,7 @@ public class CardPane extends JPanel {
        //((Graphics2D)g).setTransform(new AffineTransform());
 
         drawBackground(g);
-        //drawCard(g,card);
+        drawCard(g,card);
 
         if (pointClicked!=null && tmpPoint != null) {
             int maxX = Math.max(tmpPoint.x, pointClicked.x);
@@ -79,33 +84,30 @@ public class CardPane extends JPanel {
                     BasicStroke.JOIN_MITER,
                     10.0f, new float[]{2.0f}, 0.0f));
             g.drawRect(minX, minY, maxX-minX, maxY-minY);
+            System.out.println(placeHolders.getPlaceHolderList().size());
         }
    }
 
-
     private void drawBackground(Graphics g) {
-        //System.out.println("backgroundImagePosition.x : " + backgroundImagePosition.x);
-        //System.out.println("backgroundImagePosition.y : " + backgroundImagePosition.y);
         g.drawImage(backgroundImage, backgroundImagePosition.x, backgroundImagePosition.y,PlaceHoldersUtil.WIDTH,PlaceHoldersUtil.HEIGHT, this);
     }
 
-    /*private void drawCard(Graphics g, Card card)
+    private void drawCard(Graphics g, Card card)
     {
-        drawPlaceHolder(g,card.getActionName(),PlaceHoldersType.ACTION);
-        drawPlaceHolder(g,card.getActionDescription(),PlaceHoldersType.DESCRIPTION);
-        drawPlaceHolder(g,card.getRole(),PlaceHoldersType.ROLE);
-        drawPlaceHolder(g,card.getInpactInGame(),PlaceHoldersType.IMPACT_IN_GAME);
-        drawPlaceHolder(g,card.getToRemember(),PlaceHoldersType.TO_REMEMBER);
+        for (PlaceHolder placeHolder: this.placeHolders.getPlaceHolderList()) {
+           placeHolder.setText(card.getText(placeHolder.getType()));
+            drawPlaceHolder(g,placeHolder);
+
+        }
     }
 
-    private void drawPlaceHolder(Graphics g, String text, PlaceHoldersUtil.PlaceHoldersType type ) {
+    public void drawPlaceHolder(Graphics g, PlaceHolder placeHolder ) {
 
-        g.setFont(type.getFont());
+        g.setFont(placeHolder.getFont());
         FontMetrics fontMetrics = g.getFontMetrics();
-
-        Map<Point,String> map = PlaceHoldersUtil.getPositionMap(type,fontMetrics,text);
+        Map<Point,String> map = PlaceHoldersUtil.getPositionCenteredInPlaceHolders(placeHolder,fontMetrics);
         for (Point p:map.keySet()) {
             g.drawString(map.get(p),p.x,p.y);
         }
-    }*/
+    }
 }

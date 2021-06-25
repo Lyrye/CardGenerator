@@ -1,7 +1,6 @@
 package main;
 
-import front.CommandPane;
-import front.MainPane;
+import front.*;
 import org.pushingpixels.substance.api.skin.SubstanceGraphiteLookAndFeel;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

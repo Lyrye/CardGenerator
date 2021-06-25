@@ -1,5 +1,7 @@
 package middle;
 
+import util.PlaceHoldersUtil;
+
 public class Card {
 
     private String role;
@@ -25,11 +27,24 @@ public class Card {
     public String getActionDescription(){
         return actionDescription;
     }
-    public String getInpactInGame(){
+    public String getImpactInGame(){
         return impactInGame;
     }
     public String getToRemember(){
         return toRemember;
+    }
+
+    public String getText(PlaceHoldersUtil.placeHolderType type) {
+
+        switch (type)
+        {
+            case ACTION_NAME -> { return this.actionName; }
+            case DESCRIPTION -> { return this.actionDescription; }
+            case TO_REMEMBRE -> { return this.toRemember; }
+            case ROLE -> { return this.role; }
+            case IMPACT_IN_GAME -> { return this.impactInGame; }
+        }
+        return null;
     }
 }
 

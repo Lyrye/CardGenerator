@@ -16,21 +16,40 @@ public class CardPane extends JPanel {
     private Card card ;
     private PlaceHolders placeHolders;
     private Point pointClicked;
+
+    public void setCard(Card card) {
+        this.card = card;
+    }
+
+    private Point pointClicked2;
     private Point tmpPoint;
+    private Point tmpPoint2;
     public Font tmpFontPlaceHolder;
     public Point backgroundImagePosition = new Point(0,0);
 
     public Point getTmpPoint() {
         return tmpPoint;
     }
+    public Point getTmpPoint2() {
+        return tmpPoint2;
+    }
     public void setTmpPoint(Point tmpPoint) {
         this.tmpPoint = tmpPoint;
+    }
+    public void setTmpPoint2(Point tmpPoint2) {
+        this.tmpPoint2 = tmpPoint2;
     }
     public void setPointClicked(Point pointClicked) {
         this.pointClicked = pointClicked;
     }
     public Point getPointClicked() {
         return pointClicked;
+    }
+    public void setPointClicked2(Point pointClicked2) {
+        this.pointClicked2 = pointClicked2;
+    }
+    public Point getPointClicked2() {
+        return pointClicked2;
     }
     public Point getBackgroundImagePosition() {
         return backgroundImagePosition;

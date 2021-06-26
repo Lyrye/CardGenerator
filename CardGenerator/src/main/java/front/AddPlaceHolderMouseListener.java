@@ -21,6 +21,7 @@ public class AddPlaceHolderMouseListener implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
+
         cardPane.setPointClicked(e.getPoint());
     }
 

@@ -20,17 +20,45 @@ public class MainPane extends JPanel {
     private CardPane cardPane;
     private CommandPane commandPane;
 
+    public List<Card> getCards() {
+        return cards;
+    }
+
+    private List<Card> cards;
+    private ActionEventSwitchCardPanel actionEventSwitchCardPanel;
+
+    private JPopupMenu placeHolderTypeMenu ;
+
+    public CommandPane getCommandPane() {
+        return commandPane;
+    }
+
+    public CardPane getCardPane() {
+        return cardPane;
+    }
+
     public MainPane() {
 
         super(new BorderLayout());
         CardManager cardManager = new CardManager();
         cardManager.load();
+        actionEventSwitchCardPanel = new ActionEventSwitchCardPanel(this);
 
-        List<Card> cards = cardManager.getCards().getCards();
-        this.commandPane = new CommandPane(cards);
-        this.cardPane = commandPane.getCardPane();
+        cards = cardManager.getCards().getCards();
+        this.cardPane = new CardPane(cards.get(index));
+        this.commandPane = new CommandPane(actionEventSwitchCardPanel,index,cards.size());
+
         setBottomComponent(commandPane);
         add(cardPane, BorderLayout.CENTER);
+
+        createToolBar();
+    }
+
+    public JPopupMenu getPlaceHolderTypeMenu() {
+        return placeHolderTypeMenu;
+    }
+
+    private void createToolBar() {
 
         JToolBar bar = new JToolBar();
         add(bar, BorderLayout.PAGE_START);
@@ -38,6 +66,7 @@ public class MainPane extends JPanel {
         Icon moveIcon = IconFontSwing.buildIcon(FontAwesome.ARROWS_ALT, 20, Color.WHITE);
         JToggleButton moveButton = new JToggleButton(moveIcon);
         bar.add(moveButton);
+
         Icon addPlaceHolder = IconFontSwing.buildIcon(FontAwesome.PLUS, 20, Color.WHITE);
         JToggleButton addPlaceHolderButton = new JToggleButton(addPlaceHolder);
         bar.add(addPlaceHolderButton);
@@ -45,6 +74,7 @@ public class MainPane extends JPanel {
         JComboBox choix = new JComboBox(new Object[] {FontUtil.bigText, FontUtil.mediumText, FontUtil.smallText});
         bar.add(choix);
 
+        placeHolderTypeMenu = new JPopupMenu("Type de Place Holder");
 
         ButtonGroup group = new ButtonGroup();
         group.add(moveButton);
@@ -78,19 +108,35 @@ public class MainPane extends JPanel {
                 cardPane.tmpFontPlaceHolder = FontUtil.getFont(choix.getActionCommand());
             }
         });
-
-
-
     }
 
+    public void changeToNextCardPane( )
+    {
+        if (index < cards.size()-1)
+        {
+            index ++;
+            System.out.println(index);
+            this.cardPane.setCard(cards.get(index));
+            commandPane.updateCountLabel(index);
+            repaint();
+        }
+    }
+
+    public void changeToPreviousCardPane( )
+    {
+        if (index > 0)
+        {
+            index --;
+            this.cardPane.setCard(cards.get(index));
+            commandPane.updateCountLabel(index);
+            repaint();
+        }
+    }
     public void setTopComponent(JPanel component) {
         add(component, BorderLayout.PAGE_START);
     }
     public void setBottomComponent(JPanel component) {
         add(component, BorderLayout.PAGE_END);
     }
-
-
-
 
 }

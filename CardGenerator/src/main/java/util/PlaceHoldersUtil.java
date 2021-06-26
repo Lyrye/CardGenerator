@@ -1,8 +1,7 @@
 package util;
 
-//import front.PlaceHolders;
-
 import front.PlaceHolder;
+import front.PlaceHolders;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -12,7 +11,7 @@ import java.util.Map;
 
 public class PlaceHoldersUtil {
 
-    public final static int HEIGHT = 774;
+    public final static int HEIGHT = 774; // A changer de place -> pourquoi taille de l'image stocké dans une class qui parle de PlaceHolder
     public final static int WIDTH = 1194;
 
     public enum placeHolderType
@@ -23,48 +22,6 @@ public class PlaceHoldersUtil {
         TO_REMEMBRE,
         IMPACT_IN_GAME;
     }
-
-
-    /*public static Map<Point,String> getPositionMap(PlaceHolders.PlaceHoldersType type, FontMetrics fontMetrics, String text) {
-        ArrayList<String> lines = getLines(fontMetrics,text,type);
-
-        return getMap(lines,type,fontMetrics);
-    }
-
-    private static ArrayList<String> getLines(FontMetrics fontMetrics, String text, PlaceHolders.PlaceHoldersType type){
-        ArrayList<String> lines = new ArrayList<String>();
-
-        String[] mots = text.split(" ");
-        String line = new String();
-
-        for(int index=0;index<mots.length;index++){
-
-            if (fontMetrics.stringWidth(line+" "+mots[index])<type.getWidth()) {
-                line+=" "+mots[index];
-            } else {
-                lines.add(line);
-                line = new String();
-                line+=" "+mots[index];
-            }
-
-        }
-        lines.add(line);
-        return lines;
-    }
-
-    private static Map<Point,String> getMap(ArrayList<String> lines, PlaceHolders.PlaceHoldersType type, FontMetrics fontMetrics){
-
-        Map<Point,String> map = new LinkedHashMap<Point,String>();
-        for (int i=0;i<lines.size();i++) {
-
-            int stringSize = fontMetrics.stringWidth(lines.get(i));
-            int posX = ((type.getWidth() - stringSize)/2)+type.getUpCorner().x;
-            int posY = (i+1)*((type.getHeight()/2)/lines.size())+type.getUpCorner().y;
-
-            map.put(new Point(posX, posY),lines.get(i));
-        }
-        return map;
-    }*/
 
     private static List<String> cutTextIntoLines(PlaceHolder placeHolder, FontMetrics fontMetrics)
     {
@@ -99,6 +56,17 @@ public class PlaceHoldersUtil {
             map.put(new Point(posX, posY),lines.get(i));
         }
         return map;
+    }
+
+    public static PlaceHolders getPlaceHoldersScrumGame ()
+    {
+        PlaceHolders placeHolders = new PlaceHolders();
+        placeHolders.addPlaceHolder(new PlaceHolder(FontUtil.bigFont,new Point(960/9,340/9),new Point(1067,159),"ACTION", PlaceHoldersUtil.placeHolderType.ACTION_NAME));
+        placeHolders.addPlaceHolder(new PlaceHolder(FontUtil.mediumFont,new Point(480/9,2120/9),new Point(480/9+6945/9,2120/9+2380/9),"DESCRIPTION",PlaceHoldersUtil.placeHolderType.DESCRIPTION));
+        placeHolders.addPlaceHolder(new PlaceHolder(FontUtil.mediumFont,new Point(7650/9,2120/9),new Point(7650/9+2420/9,2120/9+2380/9),"IMPACT IN GAME",PlaceHoldersUtil.placeHolderType.IMPACT_IN_GAME));
+        placeHolders.addPlaceHolder(new PlaceHolder(FontUtil.mediumFont,new Point(350/9,5240/9),new Point(350/9+10040/9,5240/9+1450/9),"TO REMEMBER",PlaceHoldersUtil.placeHolderType.TO_REMEMBRE));
+
+        return placeHolders;
     }
 
 }

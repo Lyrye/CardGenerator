@@ -1,46 +1,41 @@
 package front;
 
-import middle.Card;
-import util.FileUtil;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
-public class CommandPane extends JPanel implements ActionListener {
-    private static final String PREVIOUS = "<";
-    private static final String NEXT = ">";
-    private static final String SAVE = "Save";
-    private static final String SAVE_ALL = "Save all";
+public class CommandPane extends JPanel{
+
+    public static final String PREVIOUS = "<";
+    public static final String NEXT = ">";
+    public static final String SAVE = "Save";
+    public static final String SAVE_ALL = "Save all";
 
     private int index = 0;
-    private List<Card> cards;
-
+    private int sizeOfCardList = 0;
     private JLabel countLabel = new JLabel("?/?");
-    private CardPane cardPane;
+    private ActionEventSwitchCardPanel actionEventSwitchCardPanel;
 
-    public CommandPane(List<Card> cards) {
+    public CommandPane(ActionEventSwitchCardPanel actionEventSwitchCardPanel ,int index, int sizeOfCardList) {
         super(new BorderLayout());
-        this.cards = cards;
-        this.cardPane = new CardPane(cards.get(index));
-
+        this.actionEventSwitchCardPanel = actionEventSwitchCardPanel;
+        this.index = index+1; // Pour avoir un index qui commence à 1 au niveau de l'affichage
+        this.sizeOfCardList= sizeOfCardList-1;
         createNavBar();
         createSaveOptions();
     }
 
     private void createSaveOptions() {
-        add(getButton(SAVE,this), BorderLayout.CENTER);
-        add(getButton(SAVE_ALL,this), BorderLayout.PAGE_END);
+        add(getButton(SAVE,actionEventSwitchCardPanel), BorderLayout.CENTER);
+        add(getButton(SAVE_ALL,actionEventSwitchCardPanel), BorderLayout.PAGE_END);
     }
-
 
     private void createNavBar() {
         JPanel navBar = new JPanel(new BorderLayout());
+        countLabel.setText(index +"/"+ sizeOfCardList);
         countLabel.setHorizontalAlignment(JLabel.CENTER);
-        navBar.add(getButton(PREVIOUS,this), BorderLayout.LINE_START);
-        navBar.add(getButton(NEXT,this), BorderLayout.LINE_END);
+        navBar.add(getButton(PREVIOUS,actionEventSwitchCardPanel), BorderLayout.LINE_START);
+        navBar.add(getButton(NEXT,actionEventSwitchCardPanel), BorderLayout.LINE_END);
         navBar.add(countLabel, BorderLayout.CENTER);
         add(navBar,BorderLayout.PAGE_START);
     }
@@ -51,29 +46,9 @@ public class CommandPane extends JPanel implements ActionListener {
         button.addActionListener(listener);
         return button;
     }
-    public CardPane getCardPane ()
-    {
-        return this.cardPane;
-    }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        switch (e.getActionCommand()) {
-            case (SAVE):
-                FileUtil.SaveImage(cardPane,"png","./card1.png");
-                break;
-            case(PREVIOUS):
-                if (index >0) index --;
-                break;
-            case (NEXT):
-                if (index< cards.size()) index ++;
-                break;
-        }
-        updateCardPane();
-    }
-
-    private void updateCardPane()
+    public void updateCountLabel (int index)
     {
-        this.cardPane = new CardPane(cards.get(index));
+        countLabel.setText(index + "/" + sizeOfCardList);
     }
 }

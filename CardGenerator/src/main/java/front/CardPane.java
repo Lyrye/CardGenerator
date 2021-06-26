@@ -1,7 +1,6 @@
 package front;
 
 import middle.Card;
-import util.FontUtil;
 import util.PlaceHoldersUtil;
 
 import javax.imageio.ImageIO;
@@ -40,17 +39,18 @@ public class CardPane extends JPanel {
 
     public CardPane(Card card) {
         this.card = card;
+        loadBackgroundImage();
+        setPreferredSize(new Dimension(PlaceHoldersUtil.WIDTH, PlaceHoldersUtil.HEIGHT));
+        placeHolders = PlaceHoldersUtil.getPlaceHoldersScrumGame();
+
+    }
+
+    private void loadBackgroundImage() {
         try {
             backgroundImage = ImageIO.read(getClass().getClassLoader().getResourceAsStream("TemplateALarrache.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        setPreferredSize(new Dimension(PlaceHoldersUtil.WIDTH, PlaceHoldersUtil.HEIGHT));
-        placeHolders = new PlaceHolders();
-        placeHolders.addPlaceHolder(new PlaceHolder(FontUtil.bigFont,new Point(960/9,340/9),new Point(1067,159),"ACTION",PlaceHoldersUtil.placeHolderType.ACTION_NAME));
-        placeHolders.addPlaceHolder(new PlaceHolder(FontUtil.mediumFont,new Point(480/9,2120/9),new Point(480/9+6945/9,2120/9+2380/9),"DESCRIPTION",PlaceHoldersUtil.placeHolderType.DESCRIPTION));
-        placeHolders.addPlaceHolder(new PlaceHolder(FontUtil.mediumFont,new Point(7650/9,2120/9),new Point(7650/9+2420/9,2120/9+2380/9),"IMPACT IN GAME",PlaceHoldersUtil.placeHolderType.IMPACT_IN_GAME));
-        placeHolders.addPlaceHolder(new PlaceHolder(FontUtil.mediumFont,new Point(350/9,5240/9),new Point(350/9+10040/9,5240/9+1450/9),"TO REMEMBER",PlaceHoldersUtil.placeHolderType.TO_REMEMBRE));
     }
 
     public void addNewPlaceHolder(PlaceHolder placeHolder){
@@ -99,8 +99,8 @@ public class CardPane extends JPanel {
         for (PlaceHolder placeHolder: this.placeHolders.getPlaceHolderList()) {
            placeHolder.setText(card.getText(placeHolder.getType()));
             drawPlaceHolder(g,placeHolder);
-
         }
+        System.out.println(card.getActionDescription());
     }
     public void TEST(){
         System.out.println("TAILLE :"+placeHolders.getPlaceHolderList().size());

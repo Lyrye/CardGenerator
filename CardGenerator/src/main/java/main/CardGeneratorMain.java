@@ -4,6 +4,7 @@ import front.MainPane;
 import jiconfont.icons.font_awesome.FontAwesome;
 import jiconfont.swing.IconFontSwing;
 import org.pushingpixels.substance.api.skin.SubstanceGraphiteLookAndFeel;
+import util.PlaceHoldersUtil;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +22,7 @@ public class CardGeneratorMain {
                     UIManager.setLookAndFeel(new SubstanceGraphiteLookAndFeel());
 
                     JFrame frame = new JFrame("Static");
-                    frame.setPreferredSize(new Dimension(500,500));
+                    frame.setPreferredSize(new Dimension(PlaceHoldersUtil.WIDTH,PlaceHoldersUtil.HEIGHT));
                     MainPane mp = new MainPane();
                     frame.setContentPane(mp);
                     frame.pack();

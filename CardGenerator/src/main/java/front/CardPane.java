@@ -1,6 +1,6 @@
 package front;
 
-import middle.Card;
+import middle.GenericCard;
 import util.PlaceHoldersUtil;
 
 import javax.imageio.ImageIO;
@@ -13,11 +13,11 @@ public class CardPane extends JPanel {
 
     private Image backgroundImage;
     public double zoom = 1d;
-    private Card card ;
+    private GenericCard card ;
     private PlaceHolders placeHolders;
     private Point pointClicked;
 
-    public void setCard(Card card) {
+    public void setCard(GenericCard card) {
         this.card = card;
     }
 
@@ -56,11 +56,12 @@ public class CardPane extends JPanel {
     }
 
 
-    public CardPane(Card card) {
+    public CardPane(GenericCard card) {
         this.card = card;
         loadBackgroundImage();
         setPreferredSize(new Dimension(PlaceHoldersUtil.WIDTH, PlaceHoldersUtil.HEIGHT));
         placeHolders = PlaceHoldersUtil.getPlaceHoldersScrumGame();
+
 
     }
 
@@ -113,13 +114,15 @@ public class CardPane extends JPanel {
         g.drawImage(backgroundImage, backgroundImagePosition.x, backgroundImagePosition.y,PlaceHoldersUtil.WIDTH,PlaceHoldersUtil.HEIGHT, this);
     }
 
-    private void drawCard(Graphics g, Card card)
+    private void drawCard(Graphics g, GenericCard card)
     {
         for (PlaceHolder placeHolder: this.placeHolders.getPlaceHolderList()) {
-           placeHolder.setText(card.getText(placeHolder.getType()));
+
+            System.out.println(placeHolder.getType().toString());
+            placeHolder.setText(card.getData(placeHolder.getType().toString()));
+          // placeHolder.setText(card.getText(placeHolder.getType()));
             drawPlaceHolder(g,placeHolder);
         }
-        System.out.println(card.getActionDescription());
     }
     public void TEST(){
         System.out.println("TAILLE :"+placeHolders.getPlaceHolderList().size());

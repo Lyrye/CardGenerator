@@ -1,7 +1,5 @@
 package front;
 
-import util.PlaceHoldersUtil;
-
 import java.awt.*;
 
 public class PlaceHolder {
@@ -10,14 +8,14 @@ public class PlaceHolder {
     private Point upLeftCorner = new Point(100,100);
     private Point downRightCorner = new Point(200,200);
     private String text;
-    private PlaceHoldersUtil.placeHolderType type;
+    private PlaceHolderType type;
 
-    public void setType(PlaceHoldersUtil.placeHolderType type) {
+    public void setType(PlaceHolderType type) {
         this.type = type;
     }
 
     public PlaceHolder(){}
-    public PlaceHolder(Font font,Point upCorner, Point downCorner,String text, PlaceHoldersUtil.placeHolderType type){
+    public PlaceHolder(Font font,Point upCorner, Point downCorner,String text, PlaceHolderType type){
         this.font = font;
         this.upLeftCorner = upCorner;
         this.downRightCorner=downCorner;
@@ -25,7 +23,7 @@ public class PlaceHolder {
         this.type = type;
     }
 
-    public PlaceHoldersUtil.placeHolderType getType() {return this.type;}
+    public PlaceHolderType getType() {return this.type;}
     public Font getFont() {
         return font;
     }

@@ -1,6 +1,7 @@
 package util;
 
 import front.PlaceHolder;
+import front.PlaceHolderType;
 import front.PlaceHolders;
 
 import java.awt.*;
@@ -13,15 +14,6 @@ public class PlaceHoldersUtil {
 
     public final static int HEIGHT = 774; // A changer de place -> pourquoi taille de l'image stocké dans une class qui parle de PlaceHolder
     public final static int WIDTH = 1194;
-
-    public enum placeHolderType
-    {
-        ACTION_NAME,
-        ROLE,
-        DESCRIPTION,
-        TO_REMEMBRE,
-        IMPACT_IN_GAME;
-    }
 
     private static List<String> cutTextIntoLines(PlaceHolder placeHolder, FontMetrics fontMetrics)
     {
@@ -61,10 +53,11 @@ public class PlaceHoldersUtil {
     public static PlaceHolders getPlaceHoldersScrumGame ()
     {
         PlaceHolders placeHolders = new PlaceHolders();
-        placeHolders.addPlaceHolder(new PlaceHolder(FontUtil.bigFont,new Point(960/9,340/9),new Point(1067,159),"ACTION", PlaceHoldersUtil.placeHolderType.ACTION_NAME));
-        placeHolders.addPlaceHolder(new PlaceHolder(FontUtil.mediumFont,new Point(480/9,2120/9),new Point(480/9+6945/9,2120/9+2380/9),"DESCRIPTION",PlaceHoldersUtil.placeHolderType.DESCRIPTION));
-        placeHolders.addPlaceHolder(new PlaceHolder(FontUtil.mediumFont,new Point(7650/9,2120/9),new Point(7650/9+2420/9,2120/9+2380/9),"IMPACT IN GAME",PlaceHoldersUtil.placeHolderType.IMPACT_IN_GAME));
-        placeHolders.addPlaceHolder(new PlaceHolder(FontUtil.mediumFont,new Point(350/9,5240/9),new Point(350/9+10040/9,5240/9+1450/9),"TO REMEMBER",PlaceHoldersUtil.placeHolderType.TO_REMEMBRE));
+        placeHolders.addPlaceHolder(new PlaceHolder(FontUtil.smallFont,new Point(0,0),new  Point(10,10),"ROLE",new PlaceHolderType("Role")));
+        placeHolders.addPlaceHolder(new PlaceHolder(FontUtil.bigFont,new Point(960/9,340/9),new Point(1067,159),"ACTION", new PlaceHolderType("ActionName")));
+        placeHolders.addPlaceHolder(new PlaceHolder(FontUtil.mediumFont,new Point(480/9,2120/9),new Point(480/9+6945/9,2120/9+2380/9),"DESCRIPTION",new PlaceHolderType("ActionDescription")));
+        placeHolders.addPlaceHolder(new PlaceHolder(FontUtil.mediumFont,new Point(7650/9,2120/9),new Point(7650/9+2420/9,2120/9+2380/9),"IMPACT IN GAME",new PlaceHolderType("ImpactInGame")));
+        placeHolders.addPlaceHolder(new PlaceHolder(FontUtil.mediumFont,new Point(350/9,5240/9),new Point(350/9+10040/9,5240/9+1450/9),"TO REMEMBER",new PlaceHolderType("ToRemember")));
 
         return placeHolders;
     }

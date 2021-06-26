@@ -21,4 +21,5 @@ public class CardDTO {
     public void addCardFromLine (String line) {
         cards.add(Arrays.asList(line.split(CsvUtil.DELIMITER)));
     }
+
 }

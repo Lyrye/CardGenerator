@@ -1,6 +1,7 @@
 package util;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,6 +24,23 @@ public class CsvUtil {
             e.printStackTrace();
         }
         return lines;
+    }
+
+    public static List<String> getColumnTitle (String path)
+    {
+        List<String> collumTitle= new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+
+            collumTitle = Arrays.asList(br.readLine().split(CsvUtil.DELIMITER));
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return collumTitle;
     }
 
 

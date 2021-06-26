@@ -1,3 +1,4 @@
+ActionName;Role;ActionDescription;ToRemember;ImpactInGame
 Médiation;Scrum Master;Le Scrum Master a évité la fin du monde avec ses techniques de médiation;Le Scrum Master est un facilitateur;+ 3 pts
 Production;Equipe de dev;La météo émotionnelle est à 5 pour toute l'équipe, ils ont été productifs;Le bien-être de l'équipe est fondamental;+ 1pt pendant 2 tours
 Absence;Scrum Master;Le Scrum Master n'a pas su corriger l'organisation interne à l'équipe;Une équipe mal organisée a besoin d'un Scrum Master efficace;- 1 pt

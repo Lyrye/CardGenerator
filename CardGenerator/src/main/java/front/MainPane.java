@@ -2,8 +2,8 @@ package front;
 
 import jiconfont.icons.font_awesome.FontAwesome;
 import jiconfont.swing.IconFontSwing;
-import middle.Card;
-import middle.CardManager;
+import middle.GenericCard;
+import middle.GenericCardManager;
 import util.FontUtil;
 
 import javax.swing.*;
@@ -20,11 +20,11 @@ public class MainPane extends JPanel {
     private CardPane cardPane;
     private CommandPane commandPane;
 
-    public List<Card> getCards() {
+    public List<GenericCard> getCards() {
         return cards;
     }
 
-    private List<Card> cards;
+    private List<GenericCard> cards;
     private ActionEventSwitchCardPanel actionEventSwitchCardPanel;
 
     private JPopupMenu placeHolderTypeMenu ;
@@ -37,14 +37,22 @@ public class MainPane extends JPanel {
         return cardPane;
     }
 
+    public GenericCardManager manager;
+
     public MainPane() {
 
         super(new BorderLayout());
-        CardManager cardManager = new CardManager();
-        cardManager.load();
+       // CardManager cardManager = new CardManager();
+        //cardManager.load();
+
+        manager = new GenericCardManager();
+        manager.load();
+
+
+
         actionEventSwitchCardPanel = new ActionEventSwitchCardPanel(this);
 
-        cards = cardManager.getCards().getCards();
+        cards = manager.getCards().getCards();
         this.cardPane = new CardPane(cards.get(index));
         this.commandPane = new CommandPane(actionEventSwitchCardPanel,index,cards.size());
 
@@ -54,9 +62,6 @@ public class MainPane extends JPanel {
         createToolBar();
     }
 
-    public JPopupMenu getPlaceHolderTypeMenu() {
-        return placeHolderTypeMenu;
-    }
 
     private void createToolBar() {
 
@@ -71,10 +76,8 @@ public class MainPane extends JPanel {
         JToggleButton addPlaceHolderButton = new JToggleButton(addPlaceHolder);
         bar.add(addPlaceHolderButton);
 
-        JComboBox choix = new JComboBox(new Object[] {FontUtil.bigText, FontUtil.mediumText, FontUtil.smallText});
+        JComboBox choix = new JComboBox(new Object[]{FontUtil.smallText,FontUtil.mediumText,FontUtil.bigText});
         bar.add(choix);
-
-        placeHolderTypeMenu = new JPopupMenu("Type de Place Holder");
 
         ButtonGroup group = new ButtonGroup();
         group.add(moveButton);

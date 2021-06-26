@@ -1,4 +1,4 @@
-package middle;
+/*package middle;
 
 import back.CardDAO;
 
@@ -29,4 +29,4 @@ public class CardManager {
     }
 
 
-}
+}*/

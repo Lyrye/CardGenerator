@@ -1,6 +1,4 @@
-package middle;
-
-import util.PlaceHoldersUtil;
+/*package middle;
 
 public class Card {
 
@@ -34,7 +32,7 @@ public class Card {
         return toRemember;
     }
 
-    public String getText(PlaceHoldersUtil.placeHolderType type) {
+    /*public String getText(PlaceHoldersUtil.placeHolderType type) {
 
         switch (type)
         {
@@ -46,5 +44,5 @@ public class Card {
         }
         return null;
     }
-}
+}*/
 

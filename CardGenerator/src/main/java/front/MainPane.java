@@ -4,102 +4,174 @@ import jiconfont.icons.font_awesome.FontAwesome;
 import jiconfont.swing.IconFontSwing;
 import middle.GenericCard;
 import middle.GenericCardManager;
+import say.swing.JFontChooser;
 import util.FontUtil;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.io.File;
 import java.util.List;
+import java.util.Locale;
 
 public class MainPane extends JPanel {
 
     private int index = 0;
     private CardPane cardPane;
     private CommandPane commandPane;
-
-    public List<GenericCard> getCards() {
-        return cards;
-    }
-
     private List<GenericCard> cards;
     private ActionEventSwitchCardPanel actionEventSwitchCardPanel;
+    private GenericCardManager manager;
+    private JToolBar toolBar;
+    private JComboBox placeHolderChoice;
+    private MouseListener moveCardMouseListener ;
+    private MouseMotionListener moveCardMouseMotionListener;
+    private MouseListener addPlaceHolderMouseListener ;
+    private MouseMotionListener addPlaceHolderMouseMotionListener;
+    private JToggleButton moveButton;
+    private JToggleButton addPlaceHolderButton;
+    private JButton fontChooserButton ;
+    private JButton bgChooserButton;
 
-    private JPopupMenu placeHolderTypeMenu ;
 
-    public CommandPane getCommandPane() {
-        return commandPane;
-    }
-
-    public CardPane getCardPane() {
-        return cardPane;
-    }
-
-    public GenericCardManager manager;
 
     public MainPane() {
 
         super(new BorderLayout());
-       // CardManager cardManager = new CardManager();
-        //cardManager.load();
 
-        manager = new GenericCardManager();
+        String pathCsv = getPathFromChooser();
+
+        manager = new GenericCardManager(pathCsv);
         manager.load();
-
-
+        cards = manager.getCards().getCards();
 
         actionEventSwitchCardPanel = new ActionEventSwitchCardPanel(this);
-
-        cards = manager.getCards().getCards();
         this.cardPane = new CardPane(cards.get(index));
         this.commandPane = new CommandPane(actionEventSwitchCardPanel,index,cards.size());
+
 
         setBottomComponent(commandPane);
         add(cardPane, BorderLayout.CENTER);
 
-        createToolBar();
+        toolBar = new JToolBar();
+        constructToolBar();
+    }
+
+    private String getPathFromChooser() {
+        JFileChooser jFileChooser = new JFileChooser();
+        FileFilter csvFilter = new FileNameExtensionFilter("les fichiers csv (*.csv)","csv");
+        jFileChooser.addChoosableFileFilter(csvFilter);
+        jFileChooser.setAcceptAllFileFilterUsed(false);
+        jFileChooser.showOpenDialog(this);
+        return jFileChooser.getSelectedFile().getAbsolutePath();
+    }
+    public List<GenericCard> getCards() {
+        return cards;
+    }
+    public CardPane getCardPane() {
+        return cardPane;
+    }
+    public int getIndex() {
+        return index;
     }
 
 
-    private void createToolBar() {
+    private void constructToolBar() {
 
-        JToolBar bar = new JToolBar();
-        add(bar, BorderLayout.PAGE_START);
+        add(toolBar, BorderLayout.PAGE_START);
 
-        Icon moveIcon = IconFontSwing.buildIcon(FontAwesome.ARROWS_ALT, 20, Color.WHITE);
-        JToggleButton moveButton = new JToggleButton(moveIcon);
-        bar.add(moveButton);
+        createToolBarButtons();
 
-        Icon addPlaceHolder = IconFontSwing.buildIcon(FontAwesome.PLUS, 20, Color.WHITE);
-        JToggleButton addPlaceHolderButton = new JToggleButton(addPlaceHolder);
-        bar.add(addPlaceHolderButton);
+        createPlaceHolderChoice();
 
-        JComboBox choix = new JComboBox(new Object[]{FontUtil.smallText,FontUtil.mediumText,FontUtil.bigText});
-        bar.add(choix);
+        createButtonGroup();
 
+        initializeListeners();
+
+        cardPane.setTmpFontPlaceHolder(FontUtil.getFont(placeHolderChoice.getActionCommand()));
+        moveButton.setSelected(true);
+        UpdateActionMoveListener(addPlaceHolderMouseListener,addPlaceHolderMouseMotionListener,moveCardMouseListener,moveCardMouseMotionListener);
+
+        addActionListenerMoveButton();
+        addActionListenerAddPlaceHolderButton();
+        addActionListenerPlaceHolderChoice();
+        addActionListenerFontChooserButton();
+        addActionListenerBgChooserButton();
+    }
+    private void createButtonGroup() {
         ButtonGroup group = new ButtonGroup();
         group.add(moveButton);
         group.add(addPlaceHolderButton);
+    }
+    private void createToolBarButtons() {
+        Icon moveIcon = IconFontSwing.buildIcon(FontAwesome.ARROWS_ALT, 20, Color.WHITE);
+        moveButton = getJToggleButton(moveIcon);
 
-        MouseListener moveCardMouseListener = new MoveCardMouseListener(cardPane);
-        MouseMotionListener moveCardMouseMotionListener = new MoveCardMouseMotionListener(cardPane);
-        MouseListener addPlaceHolderMouseListener = new AddPlaceHolderMouseListener(cardPane) ;
-        MouseMotionListener addPlaceHolderMouseMotionListener = new AddPlaceHolderMouseMotionListener(cardPane);
+        Icon addPlaceHolderIcon = IconFontSwing.buildIcon(FontAwesome.PLUS, 20, Color.WHITE);
+        addPlaceHolderButton = getJToggleButton(addPlaceHolderIcon);
 
-        moveButton.addActionListener(new ActionListener() {
+        Icon fontChooserButtonIcon = IconFontSwing.buildIcon(FontAwesome.FONT,20,Color.WHITE);
+        fontChooserButton = getButton(fontChooserButtonIcon);
+
+        Icon bgChooserButtonIcon = IconFontSwing.buildIcon(FontAwesome.PICTURE_O,20,Color.WHITE);
+        bgChooserButton = getButton(bgChooserButtonIcon);
+
+
+    }
+
+
+    private void addActionListenerBgChooserButton() {
+        bgChooserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardPane.removeMouseListener(addPlaceHolderMouseListener);
-                cardPane.removeMouseMotionListener(addPlaceHolderMouseMotionListener);
-
-                cardPane.addMouseListener(moveCardMouseListener);
-                cardPane.addMouseMotionListener(moveCardMouseMotionListener);
+                JFileChooser jFileChooser = new JFileChooser();
+                FileFilter imageFilter = new FileNameExtensionFilter("Les fichiers images (*.png)","png");
+                jFileChooser.addChoosableFileFilter(imageFilter);
+                jFileChooser.setAcceptAllFileFilterUsed(false);
+                jFileChooser.showOpenDialog(getParent());
+                cardPane.setBackgroundImage(jFileChooser.getSelectedFile().getAbsolutePath());
 
             }
         });
+    }
+    private void addActionListenerFontChooserButton() {
+        fontChooserButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //POPUP
+                JFontChooser jFontChooser = new JFontChooser();
+                JFrame fontFrameChooser = new JFrame();
+                fontFrameChooser.setLayout(new BorderLayout());
+                fontFrameChooser.add(jFontChooser,BorderLayout.CENTER);
+                fontFrameChooser.setVisible(true);
 
+                JButton fontChooserValidate = new JButton("Valider");
+                fontFrameChooser.add(fontChooserValidate,BorderLayout.PAGE_END);
+                fontFrameChooser.pack();
+                fontChooserValidate.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        fontFrameChooser.setVisible(false);
+                        cardPane.setTmpFontPlaceHolder(jFontChooser.getSelectedFont());
+                    }
+                });
+            }
+        });
+    }
+    private void addActionListenerPlaceHolderChoice() {
+        placeHolderChoice.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardPane.setTmpTypePlaceHolder (new PlaceHolderType(placeHolderChoice.getSelectedItem().toString()));
+            }
+        });
+    }
+    private void addActionListenerAddPlaceHolderButton() {
         addPlaceHolderButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -108,25 +180,65 @@ public class MainPane extends JPanel {
 
                 cardPane.addMouseListener(addPlaceHolderMouseListener);
                 cardPane.addMouseMotionListener(addPlaceHolderMouseMotionListener);
-                cardPane.tmpFontPlaceHolder = FontUtil.getFont(choix.getActionCommand());
+                cardPane.setTmpFontPlaceHolder(FontUtil.getFont(placeHolderChoice.getActionCommand()));
             }
         });
     }
+    private void addActionListenerMoveButton() {
+        moveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                UpdateActionMoveListener(addPlaceHolderMouseListener,addPlaceHolderMouseMotionListener,moveCardMouseListener,moveCardMouseMotionListener);
+            }
+        });
+    }
+    private void initializeListeners() {
+        moveCardMouseListener = new MoveCardMouseListener(cardPane);
+        moveCardMouseMotionListener = new MoveCardMouseMotionListener(cardPane);
+        addPlaceHolderMouseListener = new AddPlaceHolderMouseListener(cardPane) ;
+        addPlaceHolderMouseMotionListener = new AddPlaceHolderMouseMotionListener(cardPane);
+    }
+    private void  createPlaceHolderChoice() {
+        Object[] types = cards.get(0).getColumns().toArray();
 
-    public void changeToNextCardPane( )
-    {
+        System.out.println("Les types"+cards.get(0).getColumns().toArray()[0]);
+        placeHolderChoice = new JComboBox(types);
+        placeHolderChoice.setSelectedItem(types[0]);
+        cardPane.setTmpTypePlaceHolder(new PlaceHolderType(placeHolderChoice.getSelectedItem().toString()));
+        toolBar.add(placeHolderChoice);
+        
+    }
+    private JToggleButton getJToggleButton(Icon icon) {
+
+        JToggleButton moveButton = new JToggleButton(icon);
+        toolBar.add(moveButton);
+        return moveButton;
+    }
+    private JButton getButton(Icon icon){
+
+        JButton button = new JButton(icon);
+        toolBar.add(button);
+        return button;
+        
+    }
+    private void UpdateActionMoveListener(MouseListener addPlaceHolderMouseListener, MouseMotionListener addPlaceHolderMouseMotionListener, MouseListener moveCardMouseListener, MouseMotionListener moveCardMouseMotionListener) {
+        cardPane.removeMouseListener(addPlaceHolderMouseListener);
+        cardPane.removeMouseMotionListener(addPlaceHolderMouseMotionListener);
+        cardPane.addMouseListener(moveCardMouseListener);
+        cardPane.addMouseMotionListener(moveCardMouseMotionListener);
+    }
+    public void changeToNextCardPane( ) {
         if (index < cards.size()-1)
         {
             index ++;
-            System.out.println(index);
             this.cardPane.setCard(cards.get(index));
+            System.out.println("Index :"+index);
+            cards.get(index).print();
             commandPane.updateCountLabel(index);
             repaint();
         }
     }
-
-    public void changeToPreviousCardPane( )
-    {
+    public void changeToPreviousCardPane( ) {
         if (index > 0)
         {
             index --;

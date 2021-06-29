@@ -14,7 +14,6 @@ public class AddPlaceHolderMouseListener implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
     }
 
     @Override
@@ -25,19 +24,18 @@ public class AddPlaceHolderMouseListener implements MouseListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        cardPane.setPointClicked(null);
-        cardPane.setTmpPoint(null);
-        if(cardPane.getTmpPoint2()!=null&&cardPane.getPointClicked2()!=null){
+        cardPane.setPointReleased(e.getPoint());
+        if(cardPane.getPointClicked()!=null){
             PlaceHolder placeHolder = new PlaceHolder();
-            placeHolder.setText("??????");
-            placeHolder.setFont(cardPane.tmpFontPlaceHolder);
-            placeHolder.setDownRightCorner(cardPane.getTmpPoint2());
-            placeHolder.setUpLeftCorner(cardPane.getPointClicked2());
-
-            placeHolder.setType(new PlaceHolderType("ACTION_NAME"));
+            placeHolder.setText("? ?????");
+            placeHolder.setFont(cardPane.getTmpFontPlaceHolder());
+            placeHolder.setDownRightCorner(cardPane.getPointReleased());
+            placeHolder.setUpLeftCorner(cardPane.getPointClicked());
+            placeHolder.setType(cardPane.getTmpTypePlaceHolder());
             cardPane.addNewPlaceHolder(placeHolder);
             cardPane.repaint();
-            cardPane.TEST();
+            cardPane.setPointReleased(null);
+            cardPane.setPointClicked(null);
         }
     }
 

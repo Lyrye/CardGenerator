@@ -1,6 +1,5 @@
 package front;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -23,8 +22,8 @@ public class ZoomDragListener implements MouseListener, MouseMotionListener, Mou
     @Override
     public void mousePressed(MouseEvent e) {
         startPoint = e.getPoint();
-        startPoint.x -= carpPane.backgroundImagePosition.x;
-        startPoint.y -= carpPane.backgroundImagePosition.y;
+        startPoint.x -= carpPane.getOffset().x;
+        startPoint.y -= carpPane.getOffset().y;
     }
     @Override
     public void mouseReleased(MouseEvent e) {
@@ -35,7 +34,7 @@ public class ZoomDragListener implements MouseListener, MouseMotionListener, Mou
         Point p = e.getPoint();
         int x = p.x - startPoint.x;
         int y = p.y - startPoint.x;
-        carpPane.backgroundImagePosition = new Point(x, y);
+        carpPane.setOffset(new Point(x, y));
         carpPane.repaint();
     }
 

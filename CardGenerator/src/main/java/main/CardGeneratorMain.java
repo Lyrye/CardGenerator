@@ -22,7 +22,7 @@ public class CardGeneratorMain {
                     UIManager.setLookAndFeel(new SubstanceGraphiteLookAndFeel());
 
                     JFrame frame = new JFrame("Static");
-                    frame.setPreferredSize(new Dimension(PlaceHoldersUtil.WIDTH,PlaceHoldersUtil.HEIGHT));
+                    //frame.setPreferredSize(new Dimension(,PlaceHoldersUtil.HEIGHT));
                     MainPane mp = new MainPane();
                     frame.setContentPane(mp);
                     frame.pack();
@@ -33,7 +33,9 @@ public class CardGeneratorMain {
             });
         } catch (InterruptedException e) {
             e.printStackTrace();
+            e.getCause();
         } catch (InvocationTargetException e) {
+            e.getCause();
             e.printStackTrace();
         }
 

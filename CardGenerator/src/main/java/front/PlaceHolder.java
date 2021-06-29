@@ -65,4 +65,9 @@ public class PlaceHolder {
         return this.downRightCorner.x - this.upLeftCorner.x;
     }
 
+    public String toString () {
+
+        return "Text: " + this.text + "Font: "+this.font.toString() + "Type: "+ this.type.toString();
+    }
+
 }

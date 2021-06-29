@@ -2,11 +2,11 @@ package front;
 
 import java.util.ArrayList;
 
-public class PlaceHolders {
+public class Template {
 
     private ArrayList<PlaceHolder> placeHolderList;
 
-    public PlaceHolders(){
+    public Template(){
         placeHolderList = new ArrayList<PlaceHolder>();
     }
 

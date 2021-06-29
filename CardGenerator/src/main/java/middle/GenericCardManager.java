@@ -8,21 +8,23 @@ public class GenericCardManager {
 
     private GenericCards cards;
     private CardDAO cardDAO;
+    private String path;
 
-    public GenericCardManager()
+    public GenericCardManager(String path)
     {
         cards = new GenericCards();
         cardDAO = new CardDAO();
-        cardDAO.load("CardGenerator\\src\\main\\resources\\Cartes.csv");
+        this.path=path;
     }
 
     public void load()
     {
+        cardDAO.load(path);
         for (List<String> line: cardDAO.getCards()) {
             GenericCard card = new GenericCard();
             for (int i =0; i<getTypeCollumn().size();i++)
             {
-                card.addData(getTypeCollumn().get(i),line.get(i));
+                card.addData(getTypeCollumn().get(i),line.size()>=i-1?line.get(i):"***");
             }
             cards.addCard(card);
         }

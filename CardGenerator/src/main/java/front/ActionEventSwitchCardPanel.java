@@ -22,7 +22,7 @@ public class ActionEventSwitchCardPanel implements ActionListener {
                 mainPane.changeToNextCardPane();
                 break;
             case (CommandPane.SAVE):
-                FileUtil.SaveImage(mainPane.getCardPane(),"png","./card1.png");
+                FileUtil.SaveImage(mainPane.getCardPane(),"png","./card"+mainPane.getIndex()+".png");
                 break;
             case (CommandPane.SAVE_ALL):
                 for (int i=0;i<mainPane.getCards().size();i++)

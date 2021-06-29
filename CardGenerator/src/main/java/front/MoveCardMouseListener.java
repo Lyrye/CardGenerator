@@ -19,11 +19,10 @@ public class MoveCardMouseListener implements MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
         cardPane.setPointClicked (e.getPoint());
-        cardPane.setPointClicked2 (e.getPoint());
     }
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        cardPane.setPointClicked(null);
     }
 
     @Override

@@ -6,6 +6,7 @@ import util.PlaceHoldersUtil;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
@@ -14,30 +15,36 @@ public class CardPane extends JPanel {
     private Image backgroundImage;
     public double zoom = 1d;
     private GenericCard card ;
-    private PlaceHolders placeHolders;
+    private Template template;
     private Point pointClicked;
+    private Point pointReleased;
+    private Font tmpFontPlaceHolder;
+    private PlaceHolderType tmpTypePlaceHolder;
+    private Point offset = new Point(0,0);
+    private int backgroundHeight = 774;
+    private int backgroundWidth = 1194;
 
+
+    public Font getTmpFontPlaceHolder() {
+        return tmpFontPlaceHolder;
+    }
+    public void setTmpFontPlaceHolder(Font tmpFontPlaceHolder) {
+        this.tmpFontPlaceHolder = tmpFontPlaceHolder;
+    }
+    public PlaceHolderType getTmpTypePlaceHolder() {
+        return tmpTypePlaceHolder;
+    }
+    public void setTmpTypePlaceHolder(PlaceHolderType tmpTypePlaceHolder) {
+        this.tmpTypePlaceHolder = tmpTypePlaceHolder;
+    }
+    public Point getPointReleased() {
+        return pointReleased;
+    }
+    public void setPointReleased(Point pointReleased) {
+        this.pointReleased = pointReleased;
+    }
     public void setCard(GenericCard card) {
         this.card = card;
-    }
-
-    private Point pointClicked2;
-    private Point tmpPoint;
-    private Point tmpPoint2;
-    public Font tmpFontPlaceHolder;
-    public Point backgroundImagePosition = new Point(0,0);
-
-    public Point getTmpPoint() {
-        return tmpPoint;
-    }
-    public Point getTmpPoint2() {
-        return tmpPoint2;
-    }
-    public void setTmpPoint(Point tmpPoint) {
-        this.tmpPoint = tmpPoint;
-    }
-    public void setTmpPoint2(Point tmpPoint2) {
-        this.tmpPoint2 = tmpPoint2;
     }
     public void setPointClicked(Point pointClicked) {
         this.pointClicked = pointClicked;
@@ -45,36 +52,41 @@ public class CardPane extends JPanel {
     public Point getPointClicked() {
         return pointClicked;
     }
-    public void setPointClicked2(Point pointClicked2) {
-        this.pointClicked2 = pointClicked2;
+    public Point getOffset() {
+        return offset;
     }
-    public Point getPointClicked2() {
-        return pointClicked2;
+    public void setOffset(Point offset) {
+        this.offset = offset;
     }
-    public Point getBackgroundImagePosition() {
-        return backgroundImagePosition;
-    }
+    public void setBackgroundImage(String path) {
 
+        loadBackgroundImage(path);
+    }
 
     public CardPane(GenericCard card) {
         this.card = card;
-        loadBackgroundImage();
-        setPreferredSize(new Dimension(PlaceHoldersUtil.WIDTH, PlaceHoldersUtil.HEIGHT));
-        placeHolders = PlaceHoldersUtil.getPlaceHoldersScrumGame();
-
-
+        setPreferredSize(new Dimension(backgroundWidth, backgroundHeight));
+        template = new Template();
+        //placeHolders = PlaceHoldersUtil.getPlaceHoldersScrumGame();
     }
 
-    private void loadBackgroundImage() {
+    private void loadBackgroundImage(String path) {
         try {
-            backgroundImage = ImageIO.read(getClass().getClassLoader().getResourceAsStream("TemplateALarrache.png"));
+            System.out.println("path" +  path);
+            backgroundImage = ImageIO.read(new File(path));
         } catch (IOException e) {
             e.printStackTrace();
         }
+        backgroundHeight = backgroundImage.getHeight(this);
+        backgroundWidth = backgroundImage.getWidth(this);
+        setPreferredSize(new Dimension(backgroundWidth, backgroundHeight));
+        //revalidate();
     }
 
     public void addNewPlaceHolder(PlaceHolder placeHolder){
-        placeHolders.addPlaceHolder(placeHolder);
+
+        template.addPlaceHolder(placeHolder);
+        drawPlaceHolder(this.getGraphics(),placeHolder);
     }
 
    @Override
@@ -89,12 +101,12 @@ public class CardPane extends JPanel {
         drawBackground(g);
         drawCard(g,card);
 
-        if (pointClicked!=null && tmpPoint != null) {
-            int maxX = Math.max(tmpPoint.x, pointClicked.x);
-            int maxY = Math.max(tmpPoint.y, pointClicked.y);
+        if (pointClicked!=null && pointReleased != null) {
+            int maxX = Math.max(pointReleased.x, pointClicked.x);
+            int maxY = Math.max(pointReleased.y, pointClicked.y);
 
-            int minX = Math.min(tmpPoint.x, pointClicked.x);
-            int minY = Math.min(tmpPoint.y, pointClicked.y);
+            int minX = Math.min(pointReleased.x, pointClicked.x);
+            int minY = Math.min(pointReleased.y, pointClicked.y);
 
             /*int.x > pointClicked.x) {
                 maxX = tmpPoint.x;
@@ -106,35 +118,28 @@ public class CardPane extends JPanel {
                     BasicStroke.JOIN_MITER,
                     10.0f, new float[]{2.0f}, 0.0f));
             g.drawRect(minX, minY, maxX-minX, maxY-minY);
-            System.out.println(placeHolders.getPlaceHolderList().size());
         }
    }
 
     private void drawBackground(Graphics g) {
-        g.drawImage(backgroundImage, backgroundImagePosition.x, backgroundImagePosition.y,PlaceHoldersUtil.WIDTH,PlaceHoldersUtil.HEIGHT, this);
+        g.drawImage(backgroundImage, offset.x, offset.y,backgroundWidth,backgroundHeight, this);
     }
-
-    private void drawCard(Graphics g, GenericCard card)
-    {
-        for (PlaceHolder placeHolder: this.placeHolders.getPlaceHolderList()) {
-
-            System.out.println(placeHolder.getType().toString());
-            placeHolder.setText(card.getData(placeHolder.getType().toString()));
-          // placeHolder.setText(card.getText(placeHolder.getType()));
+    private void drawCard(Graphics g, GenericCard card) {
+        for (PlaceHolder placeHolder: this.template.getPlaceHolderList()) {
+            String data = card.getData(placeHolder.getType().toString());
+            if (data == null) data = "Text null";
+            placeHolder.setText(data);
             drawPlaceHolder(g,placeHolder);
+
         }
     }
-    public void TEST(){
-        System.out.println("TAILLE :"+placeHolders.getPlaceHolderList().size());
-    }
-
     public void drawPlaceHolder(Graphics g, PlaceHolder placeHolder ) {
 
         g.setFont(placeHolder.getFont());
         FontMetrics fontMetrics = g.getFontMetrics();
         Map<Point,String> map = PlaceHoldersUtil.getPositionCenteredInPlaceHolders(placeHolder,fontMetrics);
         for (Point p:map.keySet()) {
-            g.drawString(map.get(p),p.x,p.y);
+            g.drawString(map.get(p),p.x+ offset.x,p.y+ offset.y);
         }
     }
 }

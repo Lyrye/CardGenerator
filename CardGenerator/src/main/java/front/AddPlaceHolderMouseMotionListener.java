@@ -13,8 +13,7 @@ public class AddPlaceHolderMouseMotionListener implements MouseMotionListener {
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        cardPane.setTmpPoint(e.getPoint());
-        cardPane.setTmpPoint2(e.getPoint());
+        cardPane.setPointReleased(e.getPoint());
         cardPane.repaint();
     }
 

@@ -1,0 +1,85 @@
+En tant que;Je;Afin de;ID
+Equipe;Dois appliquer tous les éléments de ScrumDois appliquer tous les éléments de ScrumDois appliquer tous les éléments de ScrumDois appliquer tous les éléments de Scrum;Maximiser les bénéfices apportés par ScrumMaximiser les bénéfices apportés par ScrumMaximiser les bénéfices apportés par ScrumMaximiser les bénéfices apportés par Scrum;1
+Equipe;Dois appliquer tous les éléments de Scrum;Maximiser les bénéfices apportés par Scrum;1
+Equipe;Peut appliquer Scrum dans n'importe quel domaine complexe;Profiter des bénéfices de Scrum;2
+Product Owner;Peux découper un problème complexe;Produire des items et les ajouter au Product backlog;3
+Product Owner;Dois Ordonnée le Product Backlog;Maximiser la valeur et minimiser les risques;4
+Equipe;Transforme des items du Product Backlog en Increment;Créer de la valeurs;5
+Equipe;Dois inspecter les incréments produit;D'en tirer des choses à améliorer;6
+Equipe;Dois appliquer des cycles d'empirisme (inspection/adaptation);De de s'adapter constamment à l'environnement complexe;7
+Equipe;Employé une approche incrémentale;Contrôler les risques et optimiser la prédictibilité;8
+Equipe;Doit être composé de personnes venant métier différent;D'avoir toute les compétences nécessaire à la réalisation du projet;9
+Equipe;Dois rendre transparent le travail et les artefacts;pouvoir prendre des décision éclairés et permettre l'inspection (empirisme);10
+Equipe;Doit inspecter fréquemment les artefacts;Détecter des écarts ou des problèmes potentielles;11
+Equipe;Dois participer au événements Scrum;Inspecter régulièrement les artefacts et provoquer des changements;12
+Equipe;Peux adapter mes processus ou élément produit;Minimiser tout écart supplémentaires;13
+Equipe;Doit s'autogérer;M'Adapter efficacement à chaque fois que l'inspection le suggère;14
+Equipe;Dois m'engager à atteindre ses goal et se soutenir;Progresser ensemble;15
+Equipe;Doit Être focus;d'optimiser la productivité;16
+Equipe;Doit Être impliqué;faire vraiment avancer le projet;17
+Equipe;Doit Être ouvert;D'accepter le changement;18
+Equipe;Doit Être respectueux;Créer une ambiance de travail agréable pour tout le monde;19
+Equipe;Dois Être courageux;Dire les choses quand il faut et permettre l'adaptation;20
+Equipe;Dois Être courageux;Mener les bonnes actions et travailler sur des problèmes difficiles;21
+Equipe;Dois appliquer les 5 valeurs de Scrum;Faire émerger l'empirisme et consolider la confiance;22
+Equipe;Dois Avoir un SM, un PO et une équipe de dev de 3 à 9 personnes;Construire une unité stable focalisé sur l'objectif du produit;23
+Equipe;Peut être composé de 10 personnes au plus;Rester assez petite pour être réactif et assez grande pour produire un travail significatif durant un sprint;24
+Equipe;Peut choisir de scinder une équipe trop grande en plusieurs équipe scrum;Ne pas perdre les bénéfices de Scrum;25
+Equipe  de dev;Dois faire le flux tiré pour alimenter le sprint backlog;De créer un incrément utile pendant le sprint;26
+Equipe de dev;Dois établir une Definition of Done;Garantir la qualité;27
+Equipe de dev;Dois adapter le plan de chaque jour au Daily Stand Up;D'optimiser le travail;28
+Equipe;Ne doit jamais tenir un personne pour responsable d'un item;Garder l'esprit d'équipe et la confiance;29
+Product Owner;Dois formuler et communiquer explicitement la vision du produit;de maximiser la valeur;30
+Product Owner;Peux affiner le backlog produit avec l'équipe;D'impliquer tout le monde et de recueillir plus d'idées;31
+Product Owner;Dois communiquer efficacement sur le product backlog;Que l'équipe de dev comprenne bien les items et puisse travailler efficacement dessus;32
+Scrum Master;Dois bien connaître Scrum;pouvoir former l'équipe si besoin et de les coacher;33
+Scrum Master;Doit être attentif au respect de Scrum dans l'équipe;Pouvoir aider l'équipe à s'améliorer et maximiser les bénéfices de Scrum;34
+Scrum Master;Doit être un leader au service de l'équipe;Soutenir l'équipe et l'aider à rester productive;35
+Scrum Master;Repérer et combattre les obstacles de l'équipe;Permettre la progression de l'équipe;36
+Scrum Master;Vérifier que les événements Scrum ont bien lieu et respect bien les time boxe;Maximiser les bénéfices de Scrum;37
+Scrum Master;Peut aider le P.O a trouvé une manière de trier son Backlog;Maximiser la valeur;38
+Scrum Master;Peut sensibiliser l'équipe à la nécessité de bien comprendre les items du backlog;L'équipe produise bien ce qui est demandé par le P.O;39
+Scrum Master;Doit faciliter la collaboration avec les parties prenantes;Recueillir des retour utile;40
+Scrum Master;Peut accompagner l'organisation au passage à Scrum;Réduire les obstacles de l'équipe liée à l'entreprise;41
+Scrum Master;Peut faire comprendre l'approche empirique aux parties prenantes;Mettre les parties prenantes dans un bonne état d'esprit;42
+Equipe;Dois participer activement aux événements Scrum;Minimizer le besoin de réunion non prévu dans Scrum;43
+Equipe;Peux tenir les réunion Scrum toujours au même moments et endroit;Réduire la complexité;44
+Equipe;Dois réaliser des sprint de taille fixe;Créer de la cohérence et un rythme de travail;45
+Equipe;Dois enchaîner les sprints sans pauses entre;Garder un rythme régulier de travail;46
+Equipe;Ne dois faire aucun changement durant le sprint qui remettrait en cause le goal;rester Focus;47
+Product Owner;Peux affiner et changer le product Backlog n'importe quand;Garder le haut du backlog trié;48
+Equipe;Peux négocier le scope du sprint avec le PO si besoin tout en respectant le goal;Garder un rythme de travail soutenable et d'atteindre le goal en fin de sprint;49
+Equipe;Dois avoir des sprints de durée raisonnable;Des sprints goal qui reste valident et de garder un niveau de risque et complexité bas;50
+Equipe;Peut utiliser des pratiques comme le burn-up, burn down ou des diagrammes de flux cumulatifs;Evaluer la progression réalisé par l'équipe;51
+Product Owner;Peux arrêter le sprint si le goal est devenu obsolète;ne pas faire de travail inutile;52
+Equipe;Dois Collaborer pendant le planning;Créer un plan du travail à faire pendant le sprint;53
+Equipe;Peut modifier ou compléter un item du product backlog lors de son passage dans le sprint backlog;Qu'il soit réalisable pendant le sprint;54
+Equipe de dev;Choisit combien d'item sont tiré;Prendre seulement ce qu'ils pensent réalisable et ne pas avoir trop de travail;55
+Equipe de dev;Peux essaimes les items du backlog de sprint en planning;Vérifier si tout a été bien compris et poser des question au PO si besoin;56
+Equipe;Doit respecter la timeboxe du planning de 8h;Rester focus et éviter les conversations qui n'apporte rien au sujet de la réunion;57
+Equipe de dev;Dois faire des Daily Scrum;Pouvoir adapter le travail du jour et le sprint backlog;58
+Equipe de dev;Dois faire des Daily Scrum de 15 min ou moins;Rester focus et éviter les conversations dispensable;59
+Product Owner;Peux participer au Daily Scrum si je travaille sur un tâche;Participer à l'auto gestion de l'équipe;60
+Scrum Master;Peux participer au Daily Scrum si je travaille sur un tâche;Participer à l'auto gestion de l'équipe;61
+Equipe de dev;Peux utiliser la structure ou méthode que je veux pour le Daily Scrum;Coller au mieux aux besoin de l'équipe et d'améliorer l'auto gestion;62
+Equipe de dev;Dois participer au Daily Scrum;Améliorer la communication, l'identification d'obstacles, promouvoir la prise de décision rapide et éviter le besoin de faire des réunion pendant la journée;63
+Equipe;Doit prendre part à la Sprint Review;D'inspecter l'incrément produit pendant le sprint;64
+Equipe;Dois Présenter l'incrément réalisé pendant le sprint au parties prenante;D'obtenir du feedback et créer de l'interaction;65
+Equipe;Peux discuter du futur du produit pendant la Review;De décider de la suite du projet;66
+Equipe;Dois respecter la timeboxe de la review de 4h;c'est bien;67
+Equipe;Dois participer à la rétrospective;Améliorer la qualité et l'efficacité;68
+Equipe;Dois inspecter le sprint lors de la rétro (DOD, méthode de travail, outils,etc);Trouver des axes d'amélioration;69
+Equipe;Peux choisir peu d'axes d'amélioration;Elles soient bien mise en place;70
+Equipe;Peux ajouter des items au Backlog Produit suite à la rétro;Avoir une trace de l'axe d'amélioration et de le mettre en place le sprint suivant si est classé en haut du backlog;71
+Equipe;Conclure le sprint sur la rétro en time boxe de 3h; c'est bien;72
+Equipe;Dois utiliser les artefacts Scrum;Améliorer le focus et la transparence;73
+Equipe;Peut utiliser le Product Backlog;Mesurer les progrès du Product Goal;74
+Equipe;Peux utiliser le backlog de Sprint;Mesurer les progrès du Sprint Goal;75
+Equipe;Dois utiliser le backlog Produit comme unique source de travail;De toujours travailler sur ce qui a le plus de valeur;76
+Equipe;Dois avoir un unique product goal;Rester Focus sur le long terme;77
+Equipe de dev;Dois mettre à jour le backlog de sprint à mesure que de nouvelles tâches sont découvert;Que le sprint backlog reste un image en temps réel du travail du sprint;78
+Equipe de dev;Peux avoir un backlog de sprint détaillé;pouvoir inspecter le progrès du travail lors du Daily Scrum;79
+Equipe de dev;Dois m'engager sur le sprint goal et non le un nombre d'item à faire;Garder en flexibilité sur le travail à accomplir;80
+Equipe;Dois produire un incrément totalement fonctionnelle;Avoir un produit plus gros à la fin de chaque sprint;81
+Equipe;Doit mettre en place une DoD;Garantir la qualité des incréments;82
+Equipe;Dois avoir une définition commune de la DoD pour toute les équipes contribuant au produit;Avoir une cohérence dans les incréments livrés;83

@@ -105,6 +105,11 @@ public class CardPane extends JPanel {
         //((Graphics2D)g).setTransform(AffineTransform.getScaleInstance(zoom,zoom));
         //((Graphics2D)g).setTransform(new AffineTransform());
 
+        Graphics2D g2 = (Graphics2D) g;
+        RenderingHints rh = new RenderingHints(RenderingHints.KEY_TEXT_ANTIALIASING,
+                RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        g2.setRenderingHints(rh);
+
         drawBackground(g);
         drawCard(g,card);
 
@@ -133,6 +138,8 @@ public class CardPane extends JPanel {
     }
     private void drawCard(Graphics g, GenericCard card) {
         for (PlaceHolder placeHolder: this.template.getPlaceHolderList()) {
+            if (placeHolder.getType().getType().equals("ID")) g.setColor(Color.WHITE);
+            else g.setColor(Color.BLACK);
             String data = card.getData(placeHolder.getType().toString());
             if (data == null) data = "Text null";
             placeHolder.setText(data);

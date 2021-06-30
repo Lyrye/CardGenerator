@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="CardGenerator" target="16" />
+      <module name="CardGenerator" target="15" />
     </bytecodeTargetLevel>
   </component>
 </project>

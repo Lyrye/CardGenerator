@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
 
+
 public class CardGeneratorMain {
     public static void main(String[] args) {
 
@@ -21,10 +22,11 @@ public class CardGeneratorMain {
                 try {
                     UIManager.setLookAndFeel(new SubstanceGraphiteLookAndFeel());
 
-                    JFrame frame = new JFrame("Static");
+                    JFrame frame = new JFrame("Générateur de cartes");
                     //frame.setPreferredSize(new Dimension(,PlaceHoldersUtil.HEIGHT));
                     MainPane mp = new MainPane();
                     frame.setContentPane(mp);
+                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     frame.pack();
                     frame.setVisible(true);
                 } catch (UnsupportedLookAndFeelException e) {

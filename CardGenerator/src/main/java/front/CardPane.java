@@ -24,14 +24,6 @@ public class CardPane extends JPanel {
     private int backgroundHeight = 774;
     private int backgroundWidth = 1194;
 
-    private Font nextFont;
-    /*JeB*/
-    public void setNextFont(Font nextFont) {
-        this.nextFont = nextFont;
-    }
-    public Font getNextFont() {
-        return nextFont;
-    }
 
     public Font getTmpFontPlaceHolder() {
         return tmpFontPlaceHolder;
@@ -70,10 +62,13 @@ public class CardPane extends JPanel {
 
         loadBackgroundImage(path);
     }
+
     public CardPane(GenericCard card) {
         this.card = card;
         setPreferredSize(new Dimension(backgroundWidth, backgroundHeight));
         template = new Template();
+        this.setOpaque(true);
+        this.setBackground(Color.WHITE);
         //placeHolders = PlaceHoldersUtil.getPlaceHoldersScrumGame();
     }
 
@@ -86,8 +81,9 @@ public class CardPane extends JPanel {
         }
         backgroundHeight = backgroundImage.getHeight(this);
         backgroundWidth = backgroundImage.getWidth(this);
-        setPreferredSize(new Dimension(backgroundWidth, backgroundHeight));
-        //revalidate();
+        //setPreferredSize(new Dimension(backgroundWidth, backgroundHeight));
+        setSize(new Dimension(backgroundWidth+ offset.x, backgroundHeight+ offset.y));
+        getParent().getParent().revalidate();
     }
 
     public void addNewPlaceHolder(PlaceHolder placeHolder){
@@ -98,7 +94,7 @@ public class CardPane extends JPanel {
 
     @Override
     public void paint(Graphics g) {
-
+        setSize(new Dimension(backgroundWidth, backgroundHeight));
         g.setColor(Color.black);
         g.clearRect(0,0,this.getWidth(),this.getHeight());
 
@@ -141,12 +137,33 @@ public class CardPane extends JPanel {
         }
     }
     public void drawPlaceHolder(Graphics g, PlaceHolder placeHolder ) {
+        if(placeHolder.getType().getType().contains("<<PNG>>")) {
+            drawImage(g, placeHolder);
+        }
+        else{
+            drawText(g, placeHolder);
+        }
 
+    }
+
+    private void drawText(Graphics g, PlaceHolder placeHolder) {
         g.setFont(placeHolder.getFont());
         FontMetrics fontMetrics = g.getFontMetrics();
         Map<Point,String> map = PlaceHoldersUtil.getPositionCenteredInPlaceHolders(placeHolder,fontMetrics);
         for (Point p:map.keySet()) {
             g.drawString(map.get(p),p.x+ offset.x,p.y+ offset.y);
+        }
+    }
+
+    private void drawImage(Graphics g, PlaceHolder placeHolder) {
+        try {
+            File file = new File(placeHolder.getText());
+            if(file.exists()){
+                Image img = ImageIO.read(file);
+                g.drawImage(img, placeHolder.getUpLeftCorner().x+ offset.x, placeHolder.getUpLeftCorner().y+ offset.y,placeHolder.getWidth(),placeHolder.getHeight(),this);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

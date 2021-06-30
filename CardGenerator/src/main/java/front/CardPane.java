@@ -24,6 +24,14 @@ public class CardPane extends JPanel {
     private int backgroundHeight = 774;
     private int backgroundWidth = 1194;
 
+    private Font nextFont;
+    /*JeB*/
+    public void setNextFont(Font nextFont) {
+        this.nextFont = nextFont;
+    }
+    public Font getNextFont() {
+        return nextFont;
+    }
 
     public Font getTmpFontPlaceHolder() {
         return tmpFontPlaceHolder;
@@ -62,7 +70,6 @@ public class CardPane extends JPanel {
 
         loadBackgroundImage(path);
     }
-
     public CardPane(GenericCard card) {
         this.card = card;
         setPreferredSize(new Dimension(backgroundWidth, backgroundHeight));
@@ -89,14 +96,14 @@ public class CardPane extends JPanel {
         drawPlaceHolder(this.getGraphics(),placeHolder);
     }
 
-   @Override
+    @Override
     public void paint(Graphics g) {
 
         g.setColor(Color.black);
         g.clearRect(0,0,this.getWidth(),this.getHeight());
 
-       //((Graphics2D)g).setTransform(AffineTransform.getScaleInstance(zoom,zoom));
-       //((Graphics2D)g).setTransform(new AffineTransform());
+        //((Graphics2D)g).setTransform(AffineTransform.getScaleInstance(zoom,zoom));
+        //((Graphics2D)g).setTransform(new AffineTransform());
 
         drawBackground(g);
         drawCard(g,card);
@@ -119,7 +126,7 @@ public class CardPane extends JPanel {
                     10.0f, new float[]{2.0f}, 0.0f));
             g.drawRect(minX, minY, maxX-minX, maxY-minY);
         }
-   }
+    }
 
     private void drawBackground(Graphics g) {
         g.drawImage(backgroundImage, offset.x, offset.y,backgroundWidth,backgroundHeight, this);

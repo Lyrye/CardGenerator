@@ -15,9 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.io.File;
 import java.util.List;
-import java.util.Locale;
 
 public class MainPane extends JPanel {
 
@@ -38,8 +36,6 @@ public class MainPane extends JPanel {
     private JButton fontChooserButton ;
     private JButton bgChooserButton;
 
-
-
     public MainPane() {
 
         super(new BorderLayout());
@@ -53,7 +49,6 @@ public class MainPane extends JPanel {
         actionEventSwitchCardPanel = new ActionEventSwitchCardPanel(this);
         this.cardPane = new CardPane(cards.get(index));
         this.commandPane = new CommandPane(actionEventSwitchCardPanel,index,cards.size());
-
 
         setBottomComponent(commandPane);
         add(cardPane, BorderLayout.CENTER);
@@ -79,7 +74,6 @@ public class MainPane extends JPanel {
     public int getIndex() {
         return index;
     }
-
 
     private void constructToolBar() {
 
@@ -121,7 +115,6 @@ public class MainPane extends JPanel {
         Icon bgChooserButtonIcon = IconFontSwing.buildIcon(FontAwesome.PICTURE_O,20,Color.WHITE);
         bgChooserButton = getButton(bgChooserButtonIcon);
 
-
     }
 
 
@@ -145,6 +138,7 @@ public class MainPane extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 //POPUP
                 JFontChooser jFontChooser = new JFontChooser();
+                if (cardPane.getNextFont()!=null) jFontChooser.setSelectedFont(cardPane.getNextFont());
                 JFrame fontFrameChooser = new JFrame();
                 fontFrameChooser.setLayout(new BorderLayout());
                 fontFrameChooser.add(jFontChooser,BorderLayout.CENTER);
@@ -158,6 +152,10 @@ public class MainPane extends JPanel {
                     public void actionPerformed(ActionEvent e) {
                         fontFrameChooser.setVisible(false);
                         cardPane.setTmpFontPlaceHolder(jFontChooser.getSelectedFont());
+
+                        /*JeB*/
+                        System.out.println("JeB selected font: " + jFontChooser.getSelectedFont());
+                        cardPane.setNextFont(jFontChooser.getSelectedFont());
                     }
                 });
             }
@@ -206,7 +204,7 @@ public class MainPane extends JPanel {
         placeHolderChoice.setSelectedItem(types[0]);
         cardPane.setTmpTypePlaceHolder(new PlaceHolderType(placeHolderChoice.getSelectedItem().toString()));
         toolBar.add(placeHolderChoice);
-        
+
     }
     private JToggleButton getJToggleButton(Icon icon) {
 
@@ -219,7 +217,7 @@ public class MainPane extends JPanel {
         JButton button = new JButton(icon);
         toolBar.add(button);
         return button;
-        
+
     }
     private void UpdateActionMoveListener(MouseListener addPlaceHolderMouseListener, MouseMotionListener addPlaceHolderMouseMotionListener, MouseListener moveCardMouseListener, MouseMotionListener moveCardMouseMotionListener) {
         cardPane.removeMouseListener(addPlaceHolderMouseListener);

@@ -25,11 +25,12 @@ public class PlaceHoldersUtil {
         for(int index=0;index<mots.length;index++){
 
             if (fontMetrics.stringWidth(line+" "+mots[index])<placeHolder.getWidth()) {
-                line+=" "+mots[index];
+                if (line.equals("")) line = mots[index];
+                else line+=" "+mots[index];
             } else {
                 lines.add(line);
                 line = new String();
-                line+=" "+mots[index];
+                line+=/*" "+*/mots[index];
             }
         }
         lines.add(line);
@@ -46,18 +47,18 @@ public class PlaceHoldersUtil {
             int stringSize = fontMetrics.stringWidth(lines.get(i));
             int posX = ((placeHolder.getWidth() - stringSize)/2)+placeHolder.getUpLeftCorner().x;
             //int posY = (i+1)*((placeHolder.getHeight()/2)/lines.size())+placeHolder.getUpLeftCorner().y;
-            System.out.println(placeHolder.getHeight()/2);
+            /*System.out.println(placeHolder.getHeight()/2);
             System.out.println(fontMetrics.getMaxDescent());
             System.out.println((fontMetrics.getMaxAscent()+fontMetrics.getMaxDescent())/2);
             System.out.println(fontMetrics.getLeading());
-            System.out.println();
+            System.out.println();*/
             //int posY = (placeHolder.getUpLeftCorner().y + placeHolder.getHeight()/2 - (fontMetrics.getAscent()+fontMetrics.getDescent())/2) +fontMetrics.getAscent();
 
             int posY =
-                       placeHolder.getUpLeftCorner().y +
-                               (i+1)*(placeHolder.getHeight())/(lines.size()+1) -
-                       (fontMetrics.getAscent()+fontMetrics.getDescent())/(lines.size()+1) +
-                       fontMetrics.getAscent();
+                    placeHolder.getUpLeftCorner().y +
+                            (i+1)*(placeHolder.getHeight())/(lines.size()+1) -
+                            (fontMetrics.getAscent()+fontMetrics.getDescent())/(lines.size()+1) +
+                            fontMetrics.getAscent();
 
 
             map.put(new Point(posX, posY),lines.get(i));

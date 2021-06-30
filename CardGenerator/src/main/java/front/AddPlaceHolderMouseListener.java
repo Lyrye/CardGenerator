@@ -2,7 +2,6 @@ package front;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 public class AddPlaceHolderMouseListener implements MouseListener {
 
     private CardPane cardPane;
@@ -29,6 +28,7 @@ public class AddPlaceHolderMouseListener implements MouseListener {
             PlaceHolder placeHolder = new PlaceHolder();
             placeHolder.setText("? ?????");
             placeHolder.setFont(cardPane.getTmpFontPlaceHolder());
+            /*JeB*/ placeHolder.setFont(cardPane.getNextFont());
             placeHolder.setDownRightCorner(cardPane.getPointReleased());
             placeHolder.setUpLeftCorner(cardPane.getPointClicked());
             placeHolder.setType(cardPane.getTmpTypePlaceHolder());

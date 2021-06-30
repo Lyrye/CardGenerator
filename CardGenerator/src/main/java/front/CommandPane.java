@@ -16,13 +16,15 @@ public class CommandPane extends JPanel{
     private JLabel countLabel = new JLabel("?/?");
     private ActionEventSwitchCardPanel actionEventSwitchCardPanel;
 
-    public CommandPane(ActionEventSwitchCardPanel actionEventSwitchCardPanel ,int index, int sizeOfCardList) {
+    public CommandPane(ActionEventSwitchCardPanel actionEventSwitchCardPanel) {
         super(new BorderLayout());
         this.actionEventSwitchCardPanel = actionEventSwitchCardPanel;
-        this.index = index+1; // Pour avoir un index qui commence à 1 au niveau de l'affichage
-        this.sizeOfCardList= sizeOfCardList-1;
-        createNavBar();
         createSaveOptions();
+    }
+    public void setIndex(int index, int sizeOfCards){
+        this.index=index;
+        this.sizeOfCardList = sizeOfCards;
+        createNavBar();
     }
 
     private void createSaveOptions() {

@@ -35,26 +35,24 @@ public class MainPane extends JPanel {
     private JToggleButton addPlaceHolderButton;
     private JButton fontChooserButton ;
     private JButton bgChooserButton;
+    private JButton csvChooserButton;
 
     public MainPane() {
 
         super(new BorderLayout());
 
-        String pathCsv = getPathFromChooser();
-
-        manager = new GenericCardManager(pathCsv);
-        manager.load();
-        cards = manager.getCards().getCards();
-
         actionEventSwitchCardPanel = new ActionEventSwitchCardPanel(this);
-        this.cardPane = new CardPane(cards.get(index));
-        this.commandPane = new CommandPane(actionEventSwitchCardPanel,index,cards.size());
+        this.cardPane = new CardPane();
+        this.commandPane = new CommandPane(actionEventSwitchCardPanel);
 
         setBottomComponent(commandPane);
         add(cardPane, BorderLayout.CENTER);
 
         toolBar = new JToolBar();
-        constructToolBar();
+        Icon csvChooserButtonIcon = IconFontSwing.buildIcon(FontAwesome.TABLE,20,Color.WHITE);
+        csvChooserButton = getButton(csvChooserButtonIcon);
+        addActionListenerCsvChooserButton();
+        add(toolBar, BorderLayout.PAGE_START);
     }
 
     private String getPathFromChooser() {
@@ -76,8 +74,6 @@ public class MainPane extends JPanel {
     }
 
     private void constructToolBar() {
-
-        add(toolBar, BorderLayout.PAGE_START);
 
         createToolBarButtons();
 
@@ -114,10 +110,38 @@ public class MainPane extends JPanel {
 
         Icon bgChooserButtonIcon = IconFontSwing.buildIcon(FontAwesome.PICTURE_O,20,Color.WHITE);
         bgChooserButton = getButton(bgChooserButtonIcon);
-
     }
 
+    private void addActionListenerCsvChooserButton(){
+        csvChooserButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                manager=null;
+                cards=null;
+                try{
+                    toolBar.remove(fontChooserButton);
+                    toolBar.remove(bgChooserButton);
+                    toolBar.remove(addPlaceHolderButton);
+                    toolBar.remove(moveButton);
+                    toolBar.remove(placeHolderChoice);
+                }catch(Exception exception){}
 
+                fontChooserButton=null;
+                bgChooserButton=null;
+                addPlaceHolderButton=null;
+                moveButton=null;
+                placeHolderChoice=null;
+                String pathCsv = getPathFromChooser();
+                manager = new GenericCardManager(pathCsv);
+                manager.load();
+                cards = manager.getCards().getCards();
+                commandPane.setIndex(index,cards.size());
+                cardPane.setCard(cards.get(0));
+                constructToolBar();
+                revalidate();
+            }
+        });
+    }
     private void addActionListenerBgChooserButton() {
         bgChooserButton.addActionListener(new ActionListener() {
             @Override

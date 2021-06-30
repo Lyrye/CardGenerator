@@ -26,7 +26,7 @@ public class CardPane extends JPanel {
     private int backgroundWidth = 1194;
     private Images images;
 
-    private Font nextFont;
+    private Font nextFont = new Font("TimesRoman", Font.BOLD, 18);;
     /*JeB*/
     public void setNextFont(Font nextFont) {
         this.nextFont = nextFont;
@@ -73,8 +73,7 @@ public class CardPane extends JPanel {
         loadBackgroundImage(path);
     }
 
-    public CardPane(GenericCard card) {
-        this.card = card;
+    public CardPane() {
         setPreferredSize(new Dimension(backgroundWidth, backgroundHeight));
         template = new Template();
         this.setOpaque(true);
@@ -97,7 +96,7 @@ public class CardPane extends JPanel {
     }
 
     public void addNewPlaceHolder(PlaceHolder placeHolder){
-
+        System.out.println("J'ajoute un placeHolder :"+placeHolder.toString());
         template.addPlaceHolder(placeHolder);
         drawPlaceHolder(this.getGraphics(),placeHolder);
     }

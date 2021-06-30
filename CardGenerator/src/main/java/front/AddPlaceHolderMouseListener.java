@@ -26,8 +26,8 @@ public class AddPlaceHolderMouseListener implements MouseListener {
         cardPane.setPointReleased(e.getPoint());
         if(cardPane.getPointClicked()!=null){
             PlaceHolder placeHolder = new PlaceHolder();
-            placeHolder.setText("? ?????");
-            placeHolder.setFont(cardPane.getTmpFontPlaceHolder());
+            placeHolder.setText("Texte par défaut");
+            //placeHolder.setFont(cardPane.getTmpFontPlaceHolder());
             /*JeB*/ placeHolder.setFont(cardPane.getNextFont());
             placeHolder.setDownRightCorner(cardPane.getPointReleased());
             placeHolder.setUpLeftCorner(cardPane.getPointClicked());

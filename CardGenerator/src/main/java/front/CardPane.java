@@ -24,6 +24,14 @@ public class CardPane extends JPanel {
     private int backgroundHeight = 774;
     private int backgroundWidth = 1194;
 
+    private Font nextFont;
+    /*JeB*/
+    public void setNextFont(Font nextFont) {
+        this.nextFont = nextFont;
+    }
+    public Font getNextFont() {
+        return nextFont;
+    }
 
     public Font getTmpFontPlaceHolder() {
         return tmpFontPlaceHolder;
@@ -83,7 +91,6 @@ public class CardPane extends JPanel {
         backgroundWidth = backgroundImage.getWidth(this);
         //setPreferredSize(new Dimension(backgroundWidth, backgroundHeight));
         setSize(new Dimension(backgroundWidth+ offset.x, backgroundHeight+ offset.y));
-        getParent().getParent().revalidate();
     }
 
     public void addNewPlaceHolder(PlaceHolder placeHolder){

@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 public class CardPane extends JPanel {
@@ -23,6 +24,7 @@ public class CardPane extends JPanel {
     private Point offset = new Point(0,0);
     private int backgroundHeight = 774;
     private int backgroundWidth = 1194;
+    private Images images;
 
     private Font nextFont;
     /*JeB*/
@@ -77,6 +79,7 @@ public class CardPane extends JPanel {
         template = new Template();
         this.setOpaque(true);
         this.setBackground(Color.WHITE);
+        images = new Images();
         //placeHolders = PlaceHoldersUtil.getPlaceHoldersScrumGame();
     }
 
@@ -150,7 +153,6 @@ public class CardPane extends JPanel {
         else{
             drawText(g, placeHolder);
         }
-
     }
 
     private void drawText(Graphics g, PlaceHolder placeHolder) {
@@ -163,14 +165,16 @@ public class CardPane extends JPanel {
     }
 
     private void drawImage(Graphics g, PlaceHolder placeHolder) {
-        try {
+        if(!images.exist(placeHolder.getText())){
             File file = new File(placeHolder.getText());
             if(file.exists()){
-                Image img = ImageIO.read(file);
-                g.drawImage(img, placeHolder.getUpLeftCorner().x+ offset.x, placeHolder.getUpLeftCorner().y+ offset.y,placeHolder.getWidth(),placeHolder.getHeight(),this);
+                try{
+                    Image img = ImageIO.read(file);
+                    images.addImage(placeHolder.getText(), img);
+                }catch (IOException e){}
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+        if(images.exist(placeHolder.getText()))
+            g.drawImage(images.getImage(placeHolder.getText()), placeHolder.getUpLeftCorner().x+ offset.x, placeHolder.getUpLeftCorner().y+ offset.y,placeHolder.getWidth(),placeHolder.getHeight(),this);
     }
 }

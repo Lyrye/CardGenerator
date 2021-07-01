@@ -23,17 +23,17 @@ public class CommandPane extends JPanel{
     public CommandPane(CommandPaneActionEvent commandPaneActionEvent) {
         super(new FlowLayout());
         this.commandPaneActionEvent = commandPaneActionEvent;
+        createButtons();
     }
     public void setIndex(int index, int sizeOfCards){
         this.index=index;
         this.sizeOfCardList = sizeOfCards;
-        createButtons();
+        countLabel.setText(index +"/"+ sizeOfCardList);
     }
 
 
     private void createButtons() {
 
-        countLabel.setText(index +"/"+ sizeOfCardList);
         add(getButton(IconFontSwing.buildIcon(GoogleMaterialDesignIcons.KEYBOARD_ARROW_LEFT,20,Color.WHITE),PREVIOUS, commandPaneActionEvent));
         add(getButton(IconFontSwing.buildIcon(GoogleMaterialDesignIcons.SAVE,20,Color.WHITE),SAVE, commandPaneActionEvent) );
         add(countLabel);

@@ -36,6 +36,7 @@ public class MainPane extends JPanel {
         add(new JScrollPane(cardPane), BorderLayout.CENTER);
         add(toolbar, BorderLayout.PAGE_START);
         add(commandPane, BorderLayout.PAGE_END);
+        commandPane.setVisible(false);
     }
 
     private String askPathFromChooser() {
@@ -71,6 +72,7 @@ public class MainPane extends JPanel {
 
             toolbar.setDisplayMode(MainPaneToolbar.MainPaneToolbarDisplayMode.FULL);
             toolbar.updatePlaceholdersTypes(cards.get(0).getHeaders().toArray());
+            commandPane.setVisible(true);
         }
     }
 
@@ -156,24 +158,31 @@ public class MainPane extends JPanel {
         }
 
         private void initGUI() {
-            csvChooserButton.setToolTipText("Charger un fichier csv");
+
+
             add(csvChooserButton);
             addSeparator();
             add(moveButton);
-            moveButton.setToolTipText("Déplacer l'image");
             addSeparator();
             add(bgChooserButton);
-            bgChooserButton.setToolTipText("Charger une image de fond");
             add(fontChooserButton);
-            fontChooserButton.setToolTipText("Choisir une police");
             add(placeHolderChoice);
-            placeHolderChoice.setToolTipText("Choisir un type d'élément");
             add(addPlaceHolderButton);
-            addPlaceHolderButton.setToolTipText("Ajouter un élément");
-
             ButtonGroup group = new ButtonGroup();
             group.add(moveButton);
             group.add(addPlaceHolderButton);
+
+            initGUIToolTips();
+
+        }
+
+        private void initGUIToolTips() {
+            csvChooserButton.setToolTipText("Charger un fichier csv");
+            moveButton.setToolTipText("Déplacer l'image");
+            bgChooserButton.setToolTipText("Charger une image de fond");
+            fontChooserButton.setToolTipText("Choisir une police");
+            placeHolderChoice.setToolTipText("Choisir un type d'élément");
+            addPlaceHolderButton.setToolTipText("Ajouter un élément");
         }
 
         public void setDisplayMode(MainPaneToolbarDisplayMode mode) {

@@ -17,8 +17,6 @@ public class PlaceHoldersUtil {
     {
         ArrayList<String> lines = new ArrayList<String>();
 
-        System.out.println(placeHolder.toString());
-        System.out.println(placeHolder.getText());
         String[] mots = placeHolder.getText().split(" ");
         String line = new String();
 

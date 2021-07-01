@@ -36,13 +36,20 @@
         <dependency>
             <groupId>com.github.jiconfont</groupId>
             <artifactId>jiconfont-swing</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.github.jiconfont/jiconfont-font_awesome -->
         <dependency>
             <groupId>com.github.jiconfont</groupId>
             <artifactId>jiconfont-font_awesome</artifactId>
             <version>4.7.0.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.github.jiconfont/jiconfont-font_awesome -->
+        <dependency>
+            <groupId>com.github.jiconfont</groupId>
+            <artifactId>jiconfont-google_material_design_icons</artifactId>
+            <version>2.2.0.2</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.rover12421.opensource/JFontChooser -->

@@ -44,7 +44,7 @@ public class CardPane extends JPanel {
     public PlaceHolderType getTmpTypePlaceHolder() {
         return tmpTypePlaceHolder;
     }
-    public void setTmpTypePlaceHolder(PlaceHolderType tmpTypePlaceHolder) {
+    public void setNextPlaceHolderType(PlaceHolderType tmpTypePlaceHolder) {
         this.tmpTypePlaceHolder = tmpTypePlaceHolder;
     }
     public Point getPointReleased() {
@@ -55,6 +55,7 @@ public class CardPane extends JPanel {
     }
     public void setCard(GenericCard card) {
         this.card = card;
+        repaint();
     }
     public void setPointClicked(Point pointClicked) {
         this.pointClicked = pointClicked;
@@ -91,8 +92,8 @@ public class CardPane extends JPanel {
         }
         backgroundHeight = backgroundImage.getHeight(this);
         backgroundWidth = backgroundImage.getWidth(this);
-        //setPreferredSize(new Dimension(backgroundWidth, backgroundHeight));
-        setSize(new Dimension(backgroundWidth+ offset.x, backgroundHeight+ offset.y));
+        setPreferredSize(new Dimension(backgroundWidth, backgroundHeight));
+        //setSize(new Dimension(backgroundWidth+ offset.x, backgroundHeight+ offset.y));
     }
 
     public void addNewPlaceHolder(PlaceHolder placeHolder){
@@ -103,8 +104,8 @@ public class CardPane extends JPanel {
 
     @Override
     public void paint(Graphics g) {
-        setSize(new Dimension(backgroundWidth, backgroundHeight));
-        g.setColor(Color.black);
+        //setSize(new Dimension(backgroundWidth, backgroundHeight));
+        g.setColor(Color.BLACK);
         g.clearRect(0,0,this.getWidth(),this.getHeight());
 
         //((Graphics2D)g).setTransform(AffineTransform.getScaleInstance(zoom,zoom));
@@ -151,6 +152,7 @@ public class CardPane extends JPanel {
         }
     }
     public void drawPlaceHolder(Graphics g, PlaceHolder placeHolder ) {
+
         if(placeHolder.getType().getType().contains("<<PNG>>")) {
             drawImage(g, placeHolder);
         }
@@ -164,7 +166,7 @@ public class CardPane extends JPanel {
         FontMetrics fontMetrics = g.getFontMetrics();
         Map<Point,String> map = PlaceHoldersUtil.getPositionCenteredInPlaceHolders(placeHolder,fontMetrics);
         for (Point p:map.keySet()) {
-            g.drawString(map.get(p),p.x+ offset.x,p.y+ offset.y);
+            g.drawString(map.get(p),p.x+ offset.x,p.y+offset.y);
         }
     }
 

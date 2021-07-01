@@ -2,17 +2,17 @@ package middle;
 
 import back.CardDAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GenericCardManager {
 
-    private GenericCards cards;
+    private List<GenericCard> cards = new ArrayList<>();
     private CardDAO cardDAO;
     private String path;
 
     public GenericCardManager(String path)
     {
-        cards = new GenericCards();
         cardDAO = new CardDAO();
         this.path=path;
     }
@@ -26,11 +26,11 @@ public class GenericCardManager {
             {
                 card.addData(getTypeCollumn().get(i),line.size()>=i-1?line.get(i):"***");
             }
-            cards.addCard(card);
+            cards.add(card);
         }
     }
 
-    public GenericCards getCards()
+    public List<GenericCard> getCards()
     {
         return cards;
     }

@@ -28,7 +28,7 @@ public class GenericCard {
     {
         return  datas.get(key);
     }
-    public List<String> getColumns(){
+    public List<String> getHeaders(){
         List<String> types = new ArrayList<>();
         for (String s: datas.values() ) {
             if(s==null)

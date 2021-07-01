@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 public class CardPane extends JPanel {
@@ -23,8 +24,9 @@ public class CardPane extends JPanel {
     private Point offset = new Point(0,0);
     private int backgroundHeight = 774;
     private int backgroundWidth = 1194;
+    private Images images;
 
-    private Font nextFont;
+    private Font nextFont = new Font("TimesRoman", Font.BOLD, 18);;
     /*JeB*/
     public void setNextFont(Font nextFont) {
         this.nextFont = nextFont;
@@ -42,7 +44,7 @@ public class CardPane extends JPanel {
     public PlaceHolderType getTmpTypePlaceHolder() {
         return tmpTypePlaceHolder;
     }
-    public void setTmpTypePlaceHolder(PlaceHolderType tmpTypePlaceHolder) {
+    public void setNextPlaceHolderType(PlaceHolderType tmpTypePlaceHolder) {
         this.tmpTypePlaceHolder = tmpTypePlaceHolder;
     }
     public Point getPointReleased() {
@@ -53,6 +55,7 @@ public class CardPane extends JPanel {
     }
     public void setCard(GenericCard card) {
         this.card = card;
+        repaint();
     }
     public void setPointClicked(Point pointClicked) {
         this.pointClicked = pointClicked;
@@ -70,10 +73,13 @@ public class CardPane extends JPanel {
 
         loadBackgroundImage(path);
     }
-    public CardPane(GenericCard card) {
-        this.card = card;
+
+    public CardPane() {
         setPreferredSize(new Dimension(backgroundWidth, backgroundHeight));
         template = new Template();
+        this.setOpaque(true);
+        this.setBackground(Color.WHITE);
+        images = new Images();
         //placeHolders = PlaceHoldersUtil.getPlaceHoldersScrumGame();
     }
 
@@ -87,29 +93,27 @@ public class CardPane extends JPanel {
         backgroundHeight = backgroundImage.getHeight(this);
         backgroundWidth = backgroundImage.getWidth(this);
         setPreferredSize(new Dimension(backgroundWidth, backgroundHeight));
-        //revalidate();
+        //setSize(new Dimension(backgroundWidth+ offset.x, backgroundHeight+ offset.y));
     }
 
     public void addNewPlaceHolder(PlaceHolder placeHolder){
-
+        System.out.println("J'ajoute un placeHolder :"+placeHolder.toString());
         template.addPlaceHolder(placeHolder);
         drawPlaceHolder(this.getGraphics(),placeHolder);
     }
 
     @Override
     public void paint(Graphics g) {
-
-        g.setColor(Color.black);
+        //setSize(new Dimension(backgroundWidth, backgroundHeight));
+        g.setColor(Color.BLACK);
         g.clearRect(0,0,this.getWidth(),this.getHeight());
 
         //((Graphics2D)g).setTransform(AffineTransform.getScaleInstance(zoom,zoom));
         //((Graphics2D)g).setTransform(new AffineTransform());
-
         Graphics2D g2 = (Graphics2D) g;
         RenderingHints rh = new RenderingHints(RenderingHints.KEY_TEXT_ANTIALIASING,
                 RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         g2.setRenderingHints(rh);
-
         drawBackground(g);
         drawCard(g,card);
 
@@ -149,11 +153,34 @@ public class CardPane extends JPanel {
     }
     public void drawPlaceHolder(Graphics g, PlaceHolder placeHolder ) {
 
+        if(placeHolder.getType().getType().contains("<<PNG>>")) {
+            drawImage(g, placeHolder);
+        }
+        else{
+            drawText(g, placeHolder);
+        }
+    }
+
+    private void drawText(Graphics g, PlaceHolder placeHolder) {
         g.setFont(placeHolder.getFont());
         FontMetrics fontMetrics = g.getFontMetrics();
         Map<Point,String> map = PlaceHoldersUtil.getPositionCenteredInPlaceHolders(placeHolder,fontMetrics);
         for (Point p:map.keySet()) {
-            g.drawString(map.get(p),p.x+ offset.x,p.y+ offset.y);
+            g.drawString(map.get(p),p.x+ offset.x,p.y+offset.y);
         }
+    }
+
+    private void drawImage(Graphics g, PlaceHolder placeHolder) {
+        if(!images.exist(placeHolder.getText())){
+            File file = new File(placeHolder.getText());
+            if(file.exists()){
+                try{
+                    Image img = ImageIO.read(file);
+                    images.addImage(placeHolder.getText(), img);
+                }catch (IOException e){}
+            }
+        }
+        if(images.exist(placeHolder.getText()))
+            g.drawImage(images.getImage(placeHolder.getText()), placeHolder.getUpLeftCorner().x+ offset.x, placeHolder.getUpLeftCorner().y+ offset.y,placeHolder.getWidth(),placeHolder.getHeight(),this);
     }
 }

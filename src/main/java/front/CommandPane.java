@@ -1,5 +1,9 @@
 package front;
 
+import jiconfont.icons.font_awesome.FontAwesome;
+import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
+import jiconfont.swing.IconFontSwing;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -8,42 +12,41 @@ public class CommandPane extends JPanel{
 
     public static final String PREVIOUS = "<";
     public static final String NEXT = ">";
-    public static final String SAVE = "Save";
-    public static final String SAVE_ALL = "Save all";
+    public static final String SAVE = "Enregister la carte";
+    public static final String SAVE_ALL = "Enregistrer toutes les cartes";
 
     private int index = 0;
     private int sizeOfCardList = 0;
     private JLabel countLabel = new JLabel("?/?");
-    private ActionEventSwitchCardPanel actionEventSwitchCardPanel;
+    private CommandPaneActionEvent commandPaneActionEvent;
 
-    public CommandPane(ActionEventSwitchCardPanel actionEventSwitchCardPanel ,int index, int sizeOfCardList) {
-        super(new BorderLayout());
-        this.actionEventSwitchCardPanel = actionEventSwitchCardPanel;
-        this.index = index+1; // Pour avoir un index qui commence à 1 au niveau de l'affichage
-        this.sizeOfCardList= sizeOfCardList-1;
-        createNavBar();
-        createSaveOptions();
+    public CommandPane(CommandPaneActionEvent commandPaneActionEvent) {
+        super(new FlowLayout());
+        this.commandPaneActionEvent = commandPaneActionEvent;
+        createButtons();
     }
-
-    private void createSaveOptions() {
-        add(getButton(SAVE,actionEventSwitchCardPanel), BorderLayout.CENTER);
-        add(getButton(SAVE_ALL,actionEventSwitchCardPanel), BorderLayout.PAGE_END);
-    }
-
-    private void createNavBar() {
-        JPanel navBar = new JPanel(new BorderLayout());
+    public void setIndex(int index, int sizeOfCards){
+        this.index=index;
+        this.sizeOfCardList = sizeOfCards;
         countLabel.setText(index +"/"+ sizeOfCardList);
-        countLabel.setHorizontalAlignment(JLabel.CENTER);
-        navBar.add(getButton(PREVIOUS,actionEventSwitchCardPanel), BorderLayout.LINE_START);
-        navBar.add(getButton(NEXT,actionEventSwitchCardPanel), BorderLayout.LINE_END);
-        navBar.add(countLabel, BorderLayout.CENTER);
-        add(navBar,BorderLayout.PAGE_START);
     }
 
-    private static JButton getButton(String actionString, ActionListener listener) {
-        JButton button = new JButton(actionString);
+
+    private void createButtons() {
+
+        add(getButton(IconFontSwing.buildIcon(GoogleMaterialDesignIcons.KEYBOARD_ARROW_LEFT,20,Color.WHITE),PREVIOUS, commandPaneActionEvent));
+        add(getButton(IconFontSwing.buildIcon(GoogleMaterialDesignIcons.SAVE,20,Color.WHITE),SAVE, commandPaneActionEvent) );
+        add(countLabel);
+        add(getButton(IconFontSwing.buildIcon(GoogleMaterialDesignIcons.WEEKEND,20,Color.WHITE),SAVE_ALL, commandPaneActionEvent));
+        add(getButton(IconFontSwing.buildIcon(GoogleMaterialDesignIcons.KEYBOARD_ARROW_RIGHT,20,Color.WHITE),NEXT, commandPaneActionEvent));
+
+    }
+
+    private static JButton getButton(Icon icon, String actionString, ActionListener listener) {
+        JButton button = new JButton(icon);
         button.setActionCommand(actionString);
         button.addActionListener(listener);
+        button.setToolTipText(actionString);
         return button;
     }
 

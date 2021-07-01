@@ -125,7 +125,8 @@ public class MainPane extends JPanel {
                     toolBar.remove(moveButton);
                     toolBar.remove(placeHolderChoice);
                 }catch(Exception exception){}
-
+                cardPane.setPointClicked(null);
+                cardPane.setPointReleased(null);
                 fontChooserButton=null;
                 bgChooserButton=null;
                 addPlaceHolderButton=null;
